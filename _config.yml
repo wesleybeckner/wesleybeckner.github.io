@@ -5,7 +5,7 @@ description: "The professional website of Wesley Beckner."
 baseurl: "http://wesleybeckner.github.io"
 linkedin_username: wesley-beckner-b5631ab5
 github_username: wesleybeckner
-
+twitter_username: wesleyabeckner
 
 # Build settings
 markdown: kramdown
