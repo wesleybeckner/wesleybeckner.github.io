@@ -30,7 +30,7 @@ a:visited { color: #205caa; }
 .wrap {
   max-width: 700px;
   padding: 30px 30px;
-  margin: 0 auto;
+  margin: 30px auto;
   zoom: 1;
 }
 
