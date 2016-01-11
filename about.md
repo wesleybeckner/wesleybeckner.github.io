@@ -1,11 +1,7 @@
 ---
 layout: page
-title: About
-permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](http://jekyllrb.com/)
+<img align="left" src="{{ site.url }}/images/professional_wes1.jpg" hscpace="40">
 
-You can find the source code for the Jekyll new theme at: [github.com/jglovier/jekyll-new](https://github.com/jglovier/jekyll-new)
-
-You can find the source code for Jekyll at [github.com/jekyll/jekyll](https://github.com/jekyll/jekyll)
+I am a Chemical Engineering graduate student and [ARCS fellow](http://seattlearcsfoundation.org/) at the University of Washington. My work involves using molecular dynamics (MD)engines to develop insight into biomedical and energy related materials. 
