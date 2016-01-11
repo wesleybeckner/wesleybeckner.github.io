@@ -3,6 +3,6 @@ layout: page
 title: About Me
 permalink: /about/
 ---
-![]({{ site.url  }}/images/professional_wes1.jpg)
+![]({{ site.url  }}/assets/professional_wes1.jpg)
 
 I am a Chemical Engineering graduate student and [ARCS fellow](http://seattlearcsfoundation.org/) at the University of Washington. My work involves using molecular dynamics (MD)engines to develop insight into biomedical and energy related materials. 
