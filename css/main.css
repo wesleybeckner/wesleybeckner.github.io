@@ -3,7 +3,7 @@
 
 * {
   margin: 0;
-  padding: 0;
+  padding: 12;
 }
 
 html, body { height: 100%; }
@@ -347,7 +347,7 @@ a:visited { color: #205caa; }
 
 @media screen and (max-width: 600px) {
 
-  .wrap { padding: 12px 12px; }
+  .wrap { padding: 0 12px; }
 
   .site-nav {
     position: fixed;
