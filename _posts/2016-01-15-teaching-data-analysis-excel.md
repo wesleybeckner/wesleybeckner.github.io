@@ -1,4 +1,10 @@
 
+---
+title: "Analysis of large datasets in Excel"
+layout: page
+---
+
+
 #Working with large data files in Excel
 http://nirfriedmanlab.blogspot.com/2011/01/growing-yeasts-robotically.html
 
@@ -144,7 +150,7 @@ http://www.kdnuggets.com/2015/04/baby-boom-udemy-excel-tutorial-analyzing-large-
 
 
 
-![png](output_2_0.png)
+![]({{ site.url }}/assets/output_2_0.png)
 
 
 
@@ -176,7 +182,7 @@ http://www.kdnuggets.com/2015/04/baby-boom-udemy-excel-tutorial-analyzing-large-
 
 
 
-![png](output_4_1.png)
+![]({{ site.url }}/assets/output_4_1.png)
 
 
 
@@ -208,7 +214,7 @@ http://www.kdnuggets.com/2015/04/baby-boom-udemy-excel-tutorial-analyzing-large-
 
 
 
-![png](output_7_1.png)
+![]({{ site.url }}/assets/output_7_1.png)
 
 
 
@@ -224,7 +230,7 @@ http://www.kdnuggets.com/2015/04/baby-boom-udemy-excel-tutorial-analyzing-large-
 
 
 
-![png](output_8_1.png)
+![]({{ site.url }}/assets/output_8_1.png)
 
 
 
