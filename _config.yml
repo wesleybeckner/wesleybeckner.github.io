@@ -8,6 +8,6 @@ github_username: wesleybeckner
 twitter_username: wesleyabeckner
 
 # Build settings
-markdown: redcarpet
+markdown: kramdown
 permalinks: pretty
 highlighter: pygments
