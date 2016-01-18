@@ -9,7 +9,5 @@ twitter_username: wesleyabeckner
 
 # Build settings
 markdown: redcarpet
-redcarpet:
-	extensions: ["tables", "fenced_code_blocks"]
 permalinks: pretty
 highlighter: pygments
