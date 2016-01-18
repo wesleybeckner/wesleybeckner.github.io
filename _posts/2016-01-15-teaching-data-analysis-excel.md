@@ -26,6 +26,25 @@ they like to grow at 30 C and to be shaken and cells divide every 90-120 min (do
 
 http://www.kdnuggets.com/2015/04/baby-boom-udemy-excel-tutorial-analyzing-large-data-sets.html
 
+Add a Metadata Block
+--------------------
+
+Our system uses special [YAML] front-matter blocks to store metadata
+about each lesson. Use the following example to create a YAML block for
+your lesson. This should appear at the very top of your lesson file.
+(Note: you will not know the names of your reviewers. Leave this blank
+for now.)
+
+    ---
+    title: Data Mining the Internet Archive Collection
+    authors:
+    - Caleb McDaniel
+    date: 2014-03-03
+    reviewers:
+    - William J. Turkel
+    layout: default
+    ---
+
 ```
 
     #http://docs.scipy.org/doc/numpy/reference/arrays.indexing.html
