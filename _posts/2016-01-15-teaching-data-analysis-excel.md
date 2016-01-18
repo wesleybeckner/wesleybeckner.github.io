@@ -26,6 +26,7 @@ they like to grow at 30 C and to be shaken and cells divide every 90-120 min (do
 
 http://www.kdnuggets.com/2015/04/baby-boom-udemy-excel-tutorial-analyzing-large-data-sets.html
 
+```
 
     #http://docs.scipy.org/doc/numpy/reference/arrays.indexing.html
     #http://docs.scipy.org/doc/numpy-1.10.1/reference/generated/numpy.random.normal.html
@@ -233,7 +234,7 @@ http://www.kdnuggets.com/2015/04/baby-boom-udemy-excel-tutorial-analyzing-large-
 ![]({{ site.url }}/assets/output_8_1.png)
 
 
-
+```
     
 
 
