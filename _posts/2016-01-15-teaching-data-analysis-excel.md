@@ -1,4 +1,3 @@
-
 ---
 title: "Analysis of large datasets in Excel"
 layout: page
