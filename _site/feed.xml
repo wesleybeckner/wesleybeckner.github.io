@@ -3,18 +3,12 @@
   <channel>
     <title>Wesley Beckner</title>
     <description>Research and Teaching Website for Wesley Beckner.</description>
-    <link>http://wesleybeckner.github.io</link>
-    <atom:link href="http://wesleybeckner.github.io/feed.xml" rel="self" type="application/rss+xml" />
+    <link></link>
+    <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
-        <title>Teaching Data Analysis Excel</title>
-        <description>
-&lt;hr /&gt;
-&lt;p&gt;title: “Analysis of large datasets in Excel”
-layout: page
-—&lt;/p&gt;
-
-&lt;h1 id=&quot;working-with-large-data-files-in-excel&quot;&gt;Working with large data files in Excel&lt;/h1&gt;
+        <title>Analysis of large datasets in Excel</title>
+        <description>&lt;h1 id=&quot;working-with-large-data-files-in-excel&quot;&gt;Working with large data files in Excel&lt;/h1&gt;
 &lt;p&gt;http://nirfriedmanlab.blogspot.com/2011/01/growing-yeasts-robotically.html&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;“Whenever you create a computer document, you should do so with the philosophy that if you open it again six months from now, you will immediately understand what you’re looking at.”&lt;/em&gt;&lt;/p&gt;
@@ -89,10 +83,10 @@ def numpy_gauss(a, b, c):
 
 
 ###shuffled array of narnians
-f = 'peter'
-g = 'lucy'
-h = 'edmond'
-i = 'susan'
+f = &#39;peter&#39;
+g = &#39;lucy&#39;
+h = &#39;edmond&#39;
+i = &#39;susan&#39;
 b = []
 for k in range(3000):
     b.append(f)
@@ -136,27 +130,27 @@ zx = []
 final = np.zeros((3000,2), dtype=object)
 
 for k in range(3000):
-    if b[k] == 'peter':
+    if b[k] == &#39;peter&#39;:
         y3[k] = y3[k]
-        final[k,1] = ['peter']
+        final[k,1] = [&#39;peter&#39;]
         final[k,0] = y3[k]
         w.append(y3[k])
         wx.append(k)
-    elif b[k] == 'lucy':
+    elif b[k] == &#39;lucy&#39;:
         y3[k] = y3[k] + 0.01
-        final[k,1] = ['lucy']
+        final[k,1] = [&#39;lucy&#39;]
         final[k,0] = y3[k]
         x.append(y3[k])
         xx.append(k)
-    elif b[k] == 'edmond':
+    elif b[k] == &#39;edmond&#39;:
         y3[k] = y3[k] * np.random.randint(94, 105, 1)*0.01
-        final[k,1] = ['edmond']
+        final[k,1] = [&#39;edmond&#39;]
         final[k,0] = y3[k]
         y.append(y3[k])
         yx.append(k)
-    elif b[k] == 'susan':
+    elif b[k] == &#39;susan&#39;:
         y3[k] = y3[k] * np.random.randint(94, 99, 1)*0.01
-        final[k,1] = ['susan']
+        final[k,1] = [&#39;susan&#39;]
         final[k,0] = y3[k]
         z.append(y3[k])
         zx.append(k)
@@ -172,8 +166,8 @@ plt2 = fig.add_subplot(212)
 plt2.plot(y3)
 
 
-with open('curious_data.csv', 'wb') as csvfile:
-    spamwriter = csv.writer(csvfile, delimiter='\n',
+with open(&#39;curious_data.csv&#39;, &#39;wb&#39;) as csvfile:
+    spamwriter = csv.writer(csvfile, delimiter=&#39;\n&#39;,
                              quoting=csv.QUOTE_MINIMAL)
     spamwriter.writerow(final)
 &lt;/code&gt;&lt;/pre&gt;
@@ -252,8 +246,8 @@ plt.show
 
 </description>
         <pubDate>Fri, 15 Jan 2016 00:00:00 -0800</pubDate>
-        <link>http://wesleybeckner.github.io/2016/01/15/teaching-data-analysis-excel.html</link>
-        <guid isPermaLink="true">http://wesleybeckner.github.io/2016/01/15/teaching-data-analysis-excel.html</guid>
+        <link>/2016/01/15/teaching-data-analysis-excel.html</link>
+        <guid isPermaLink="true">/2016/01/15/teaching-data-analysis-excel.html</guid>
       </item>
     
   </channel>
