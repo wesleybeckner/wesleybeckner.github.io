@@ -127,7 +127,7 @@
 &lt;style type=&quot;text/css&quot;&gt;
 /* Overrides of notebook CSS for static HTML export */
 body {
-  overflow: visible;
+  overflow: scroll;
   padding: 8px;
 }
 
@@ -188,7 +188,7 @@ div#notebook {
 &lt;/div&gt;
 &lt;div class=&quot;inner_cell&quot;&gt;
 &lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;h1 id=&quot;Working-with-large-data-files-in-Excel&quot;&gt;Working with large data files in Excel&lt;a class=&quot;anchor-link&quot; href=&quot;#Working-with-large-data-files-in-Excel&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;h3 id=&quot;We've-received-some-messy-OD600-data-of-a-yeast-culture-from-a-lab-partner&quot;&gt;We've received some messy OD&lt;sub&gt;600&lt;/sub&gt; data of a yeast culture from a lab partner&lt;a class=&quot;anchor-link&quot; href=&quot;#We've-received-some-messy-OD600-data-of-a-yeast-culture-from-a-lab-partner&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Let's see if we can identify some trends in our &quot;messy&quot; data based on our knowledge of precision and accuracy&lt;/p&gt;
+&lt;h3 id=&quot;We've-received-some-messy-OD600-data-of-a-yeast-culture-from-a-lab-partner&quot;&gt;We've received some messy OD&lt;sub&gt;600&lt;/sub&gt; data of a yeast culture from a lab partner&lt;a class=&quot;anchor-link&quot; href=&quot;#We've-received-some-messy-OD600-data-of-a-yeast-culture-from-a-lab-partner&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Let's see if we can identify some trends in our &quot;messy&quot; data based on our knowledge of precision and accuracy&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
@@ -237,7 +237,7 @@ div#notebook {
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&quot;class1.PNG&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://wesleybeckner.github.io/assets/class1.PNG&quot; /&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Use filters&lt;ul&gt;
 &lt;li&gt;select all three columns and got to data, filter&lt;/li&gt;
@@ -247,7 +247,7 @@ div#notebook {
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&quot;class2.PNG&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://wesleybeckner.github.io/assets/class2.PNG&quot; /&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Use solver to create a growth model&lt;ul&gt;
 &lt;li&gt;let’s say we trust peter’s measurements. &lt;strong&gt;what sorts of analysis can we do in excel to determine whether the other researchers are taking accurate or imprecise measurements?&lt;/strong&gt;&lt;/li&gt;
@@ -262,11 +262,11 @@ div#notebook {
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&quot;class3.PNG&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://wesleybeckner.github.io/assets/class3.PNG&quot; /&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;You should obtain values close to the following&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&quot;class4.PNG&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://wesleybeckner.github.io/assets/class4.PNG&quot; /&gt;&lt;/p&gt;
 &lt;h1 id=&quot;Homework&quot;&gt;Homework&lt;a class=&quot;anchor-link&quot; href=&quot;#Homework&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;HW 3 is due at the start of class on Wednesday 1/27. HW is worth 50 points&lt;/strong&gt;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;p&gt;&lt;strong&gt;[5 pts]&lt;/strong&gt; Spend at least the first 30 minutes of this assignment with your mouse unplugged from the computer. Make a statement that you did this somewhere on your turned in homework. What did you find to be the most useful shortcut?&lt;/p&gt;
