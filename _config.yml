@@ -11,4 +11,4 @@ twitter_username: wesleyabeckner
 # Build settings
 markdown: kramdown
 permalinks: pretty
-highlighter: pygments
+highlighter: rouge
