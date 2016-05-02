@@ -3,4 +3,4 @@ title: "Visualizing Yelp Data"
 layout: post
 ---
 
-{% yelp.html %}
+{% include yelp.html %}
