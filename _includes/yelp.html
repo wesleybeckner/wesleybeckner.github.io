@@ -43,7 +43,7 @@ var svg = d3.select("body").append("svg")
 
 
 //<!-- load the json file -->
-d3.json("YALP_mania.json", function(error, data) {
+d3.json("{{ site.url }}/assets/YALP_mania.json", function(error, data) {
 console.log(data)
 var nested_data = d3.nest()
 			.key(function(d){return d.yelp;})
