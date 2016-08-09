@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+
+body {
+  font: 10px sans-serif;
+  width: 100%;
+  display: block;
+}
+
+.label {
+  font-weight: bold;
+}
+
+.tile, .zoom {
+  shape-rendering: crispEdges;
+}
+
+.zoom { 
+  pointer-events: none;
+  stroke: #000;
+  stroke-width:2.5px;
+}
+
+#zoom_0 { 
+  stroke: #D62728; <!-- Height -->
+}
+
+#zoom_1 { 
+  stroke: #1F77B4; <!-- Potential -->
+}
+
+#zoom_2 {  
+  stroke: #FF7F0E; <!-- Phase -->
+}
+
+#zoom_3 { 
+  stroke: #2CA02C; <!-- Amplitude -->
+}
+
+.cell-hover {
+        stroke: #F00;
+        stroke-width:2.5px;   
+      }
+
+.title {
+    font-size: 14px;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+#inputs {
+    width: 78%;
+    float: right;
+    white-space: nowrap; <!-- keep everything on one line -->
+    vertical-align: top;
+    overflow: hidden;
+    text-align: center;
+}
+
+#interactions {
+    width: 18%;
+    float: left;
+    text-align: center;
+}
+
+#tree {
+    width: 65%;
+    float: left;
+    text-align: center;
+}
+
+#output {
+    width: 30%;
+    float: right;
+    text-align: center;
+}
+
+.node circle {
+    fill: #6D7B8D;
+    stroke: #6D7B8D;
+    //fill: #f1f1f1;
+    //stroke: #f1f1f1;
+    //stroke-width: 1px;
+}
+
+.node text { font: 12px sans-serif; }
+
+.link {
+    fill: none;
+    stroke: #ccc;
+    //stroke-width: 2px; // use tree structure to set tree line width
+
+}
+
+.axis {
+  font: 10px sans-serif;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+.axis .domain {
+  fill: none;
+  stroke: #000;
+  stroke-opacity: .3;
+  stroke-width: 10px;
+  stroke-linecap: round;
+}
+
+.axis .halo {
+  fill: none;
+  stroke: #ddd;
+  stroke-width: 8px;
+  stroke-linecap: round;
+}
+
+.slider .handle {
+  fill: #fff;
+  stroke: #000;
+  stroke-opacity: .5;
+  stroke-width: 1.25px;
+  cursor: crosshair;
+}
+
+
+
+</style>
+<link rel="stylesheet" href="css/d3.slider.css" />
+<link rel="stylesheet" href="css/guiders.css" />
+<script type="text/javascript" src="./d3/d3.js"></script>
+<script type="text/javascript" src="./scripts/d3.slider.js"></script>
+<script type="text/javascript" src="./scripts/d3-scale.v0.7.min.js"></script>
+<script type="text/javascript" src="./scripts/tree_styling.js"></script>
+<script type="text/javascript" src="./scripts/generate_images.js"></script>
+<script type="text/javascript" src="./scripts/generate_tree.js"></script>
+<script type="text/javascript" src="./scripts/slider.js"></script>
+<script type="text/javascript" src="./scripts/jquery.min.js"></script>
+<script type="text/javascript" src="./scripts/guiders.js"></script>
+</head>
+<body>
+<div id="interactions"><h1>Parameters</h1>
+    Tree Depth<br></br>
+    <div class="depth_slider"></div>
+    <br></br>
+    Number of Trees in Forest<br></br>
+    <div class="forest_slider"></div>
+</div>
+<div id="inputs"><h1>Features</h1></div>
+<div id="tree"><h1>Tree</h1></div>
+<div id="output"><h1>Outputs</h1></div>
+
+<script>
+
+// ************** Generate Guiders  *****************
+
+guiders.createGuider({
+  buttons: [{name: "Next"}],
+  description: "To exit the tutorial hit the escape key. Otherwise hit next!",
+  id: "first",
+  next: "second",
+  overlay:true,
+  title: "Welcome to the Decision Forests online teaching tutorial!",
+  closeOnEscape: true,
+  onClose: guiders.hideAll()
+}).show();
+
+guiders.createGuider({
+  attachTo: inputs,
+  position: 6,
+  buttons: [{name: "Next"}],
+  description: "In this dataset are four atomic force microscopy images of a perovskite solar cell. We use these to predict the spatial mapping of the material’s photoluminescence. As you mouse over the pixels, your cursor highlights where this portion of material maps to the other images. The top portions of these images represent the training data, while the bottom portions are the pixels our learning algorithm will use to make a prediction.",
+  id: "second",
+  next: "third",
+  overlay: true,
+  highlight: true,
+  closeOnEscape: true,
+  title: "Inputs"
+});
+
+guiders.createGuider({
+  attachTo: interactions,
+  position: 6,
+  offset: { right: 100 , top: +100},
+  buttons: [{name: "Next"}],
+  description: "Random forests learning algorithms have two major parameters a user can specify: tree depth and the number of trees in the forest. Adjust the slide bars to see how they affect the algorithm’s performance.",
+  id: "third",
+  next: "fifth",
+  closeOnEscape: true,
+  overlay: true,
+  highlight: true,
+  title: "Random Forest Parameters"
+});
+
+guiders.createGuider({
+  attachTo: tree,
+  position: 2,
+//  offset: { left: -100, top: +200},
+  buttons: [{name: "Next"}],
+  description: "Here is one of the trees that are generated from the learning algorithm. In the event that you choose a single tree in the slider bar, that tree is representative of the entire mapping from input features to output! When multiple trees are generated, the prediction is the average of the ensemble of trees.",
+  id: "fifth",
+  next: "sixth",
+  overlay: true,
+  highlight: true,
+  closeOnEscape: true,
+  title: "Tree Structure"
+});
+
+guiders.createGuider({
+  attachTo: output,
+  position: 10,
+//  offset: {right: +100, top: +200},
+  buttons: [{name: "Close"}],
+  description: "Here are the results of the learning algorithm. As in the ‘features’ images, the top portion of the image represents the training data, while the bottom half of the image is the prediction.",
+  id: "sixth",
+  overlay: true,
+  highlight: true,
+  closeOnEscape: true,
+  title: "Predicted Image"
+});
+
+
+// ************** Generate the images  *****************
+
+outerWidth_input = (.78/4)*window.innerWidth; // 78% of the screen (div width) / 4 images = 1/5
+outerHeight_input = outerWidth_input; // make a square image
+
+outerWidth_output = outerWidth_input; // These have to be the same size still. Need to figure out how to account
+outerHeight_output = outerHeight_input; // for different translations of the zoom rects if we want these to be different. - Matt
+
+// Make the input and output images
+show_image("data/Height.txt", outerWidth_input, outerHeight_input, "Height", "#inputs");
+show_image("data/Potential.txt", outerWidth_input, outerHeight_input, "Potential", "#inputs");
+show_image("data/Phase.txt", outerWidth_input, outerHeight_input, "Phase", "#inputs");
+show_image("data/Amplitude.txt", outerWidth_input, outerHeight_input, "Amplitude", "#inputs");
+show_output("python/results/4_depth_5_trees.txt", "python/results/4_depth_5_trees.txt", outerWidth_output, outerHeight_output, "Photoluminescence (top:actual, bottom:predicted)", "#output");
+show_output("data/Photoluminescence.txt", "data/Photoluminescence.txt", outerWidth_output, outerHeight_output, "Photoluminescence (actual)", "#output");
+
+// ************** Generate the default tree diagram  *****************
+
+generate_tree("python/results/4_depth_1_trees_1_estimator.json");
+
+// ************** Generate the sliders  *****************
+depth_slider = d3.slider().scale(d3.scale.ordinal().domain([1,2,3,4,5]).rangePoints([0, 1], 0.5)).axis(d3.svg.axis()).snap(true).value(4);
+
+forest_slider = d3.slider().scale(d3.scale.ordinal().domain([1,2,3,4,5]).rangePoints([0, 1], 0.5)).axis(d3.svg.axis()).snap(true).value(4);
+    
+d3.select('.depth_slider').call(depth_slider);
+d3.select('.forest_slider').call(forest_slider);
+    
+depth_slider.on("slide", function(evt, value) {
+        update(value);
+    });
+    
+forest_slider.on("slide", function(evt, value) {
+        update_forest(value);
+    });
+
+// Value is the value of the slider (i.e. the Tree Depth or # of Trees etc.)
+function update(value) {
+    var dataset = "python/results/" + value + "_depth_" + forest_slider.value() + "_trees.txt";
+    var tree = value + "_depth_4_trees_1_estimator.json";
+    console.log(dataset);
+    update_output(dataset, dataset, outerWidth_output, outerHeight_output, "Photoluminescence", "#output");
+    generate_tree("python/results/" + tree); 
+}
+function update_forest(value) {
+    var dataset = "python/results/" + depth_slider.value() + "_depth_" + value + "_trees.txt";
+    console.log(dataset);
+    update_output(dataset, dataset, outerWidth_output, outerHeight_output, "Photoluminescence", "#output");
+}
+
+
+// The variable trees_drawn is used to 
+// determine whether draw_tree is drawing the first
+// tree or re-drawing a new one. 
+// If it is a replacement tree, we want to delete the old one. 
+var trees_drawn = 1
+
+</script>
+</body>
+</html>

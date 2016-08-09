@@ -7,6 +7,814 @@
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Visualizing Random Forests</title>
+        <description>&lt;p&gt;This visualization is an extension of an assignment for CSE 512 done by Matt Murbach, Janet Matsen, and Wesley Beckner at the University of Washington&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/p&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot; /&gt;
+&lt;style&gt;
+
+body {
+  font: 10px sans-serif;
+  width: 100%;
+  display: block;
+}
+
+.label {
+  font-weight: bold;
+}
+
+.tile, .zoom {
+  shape-rendering: crispEdges;
+}
+
+.zoom { 
+  pointer-events: none;
+  stroke: #000;
+  stroke-width:2.5px;
+}
+
+#zoom_0 { 
+  stroke: #D62728; &lt;!-- Height --&gt;
+}
+
+#zoom_1 { 
+  stroke: #1F77B4; &lt;!-- Potential --&gt;
+}
+
+#zoom_2 {  
+  stroke: #FF7F0E; &lt;!-- Phase --&gt;
+}
+
+#zoom_3 { 
+  stroke: #2CA02C; &lt;!-- Amplitude --&gt;
+}
+
+.cell-hover {
+        stroke: #F00;
+        stroke-width:2.5px;   
+      }
+
+.title {
+    font-size: 14px;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+#inputs {
+    width: 78%;
+    float: right;
+    white-space: nowrap; &lt;!-- keep everything on one line --&gt;
+    vertical-align: top;
+    overflow: hidden;
+    text-align: center;
+}
+
+#interactions {
+    width: 18%;
+    float: left;
+    text-align: center;
+}
+
+#tree {
+    width: 65%;
+    float: left;
+    text-align: center;
+}
+
+#output {
+    width: 30%;
+    float: right;
+    text-align: center;
+}
+
+.node circle {
+    fill: #6D7B8D;
+    stroke: #6D7B8D;
+    //fill: #f1f1f1;
+    //stroke: #f1f1f1;
+    //stroke-width: 1px;
+}
+
+.node text { font: 12px sans-serif; }
+
+.link {
+    fill: none;
+    stroke: #ccc;
+    //stroke-width: 2px; // use tree structure to set tree line width
+
+}
+
+.axis {
+  font: 10px sans-serif;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+.axis .domain {
+  fill: none;
+  stroke: #000;
+  stroke-opacity: .3;
+  stroke-width: 10px;
+  stroke-linecap: round;
+}
+
+.axis .halo {
+  fill: none;
+  stroke: #ddd;
+  stroke-width: 8px;
+  stroke-linecap: round;
+}
+
+.slider .handle {
+  fill: #fff;
+  stroke: #000;
+  stroke-opacity: .5;
+  stroke-width: 1.25px;
+  cursor: crosshair;
+}
+
+
+
+&lt;/style&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;css/d3.slider.css&quot; /&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;css/guiders.css&quot; /&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;./d3/d3.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;./scripts/d3.slider.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;./scripts/d3-scale.v0.7.min.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;./scripts/tree_styling.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;./scripts/generate_images.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;./scripts/generate_tree.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;./scripts/slider.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;./scripts/jquery.min.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;./scripts/guiders.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div id=&quot;interactions&quot;&gt;&lt;h1&gt;Parameters&lt;/h1&gt;
+    Tree Depth&lt;br /&gt;
+    &lt;div class=&quot;depth_slider&quot;&gt;&lt;/div&gt;
+    &lt;br /&gt;
+    Number of Trees in Forest&lt;br /&gt;
+    &lt;div class=&quot;forest_slider&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;inputs&quot;&gt;&lt;h1&gt;Features&lt;/h1&gt;&lt;/div&gt;
+&lt;div id=&quot;tree&quot;&gt;&lt;h1&gt;Tree&lt;/h1&gt;&lt;/div&gt;
+&lt;div id=&quot;output&quot;&gt;&lt;h1&gt;Outputs&lt;/h1&gt;&lt;/div&gt;
+
+&lt;script&gt;
+
+// ************** Generate Guiders  *****************
+
+guiders.createGuider({
+  buttons: [{name: &quot;Next&quot;}],
+  description: &quot;To exit the tutorial hit the escape key. Otherwise hit next!&quot;,
+  id: &quot;first&quot;,
+  next: &quot;second&quot;,
+  overlay:true,
+  title: &quot;Welcome to the Decision Forests online teaching tutorial!&quot;,
+  closeOnEscape: true,
+  onClose: guiders.hideAll()
+}).show();
+
+guiders.createGuider({
+  attachTo: inputs,
+  position: 6,
+  buttons: [{name: &quot;Next&quot;}],
+  description: &quot;In this dataset are four atomic force microscopy images of a perovskite solar cell. We use these to predict the spatial mapping of the material’s photoluminescence. As you mouse over the pixels, your cursor highlights where this portion of material maps to the other images. The top portions of these images represent the training data, while the bottom portions are the pixels our learning algorithm will use to make a prediction.&quot;,
+  id: &quot;second&quot;,
+  next: &quot;third&quot;,
+  overlay: true,
+  highlight: true,
+  closeOnEscape: true,
+  title: &quot;Inputs&quot;
+});
+
+guiders.createGuider({
+  attachTo: interactions,
+  position: 6,
+  offset: { right: 100 , top: +100},
+  buttons: [{name: &quot;Next&quot;}],
+  description: &quot;Random forests learning algorithms have two major parameters a user can specify: tree depth and the number of trees in the forest. Adjust the slide bars to see how they affect the algorithm’s performance.&quot;,
+  id: &quot;third&quot;,
+  next: &quot;fifth&quot;,
+  closeOnEscape: true,
+  overlay: true,
+  highlight: true,
+  title: &quot;Random Forest Parameters&quot;
+});
+
+guiders.createGuider({
+  attachTo: tree,
+  position: 2,
+//  offset: { left: -100, top: +200},
+  buttons: [{name: &quot;Next&quot;}],
+  description: &quot;Here is one of the trees that are generated from the learning algorithm. In the event that you choose a single tree in the slider bar, that tree is representative of the entire mapping from input features to output! When multiple trees are generated, the prediction is the average of the ensemble of trees.&quot;,
+  id: &quot;fifth&quot;,
+  next: &quot;sixth&quot;,
+  overlay: true,
+  highlight: true,
+  closeOnEscape: true,
+  title: &quot;Tree Structure&quot;
+});
+
+guiders.createGuider({
+  attachTo: output,
+  position: 10,
+//  offset: {right: +100, top: +200},
+  buttons: [{name: &quot;Close&quot;}],
+  description: &quot;Here are the results of the learning algorithm. As in the ‘features’ images, the top portion of the image represents the training data, while the bottom half of the image is the prediction.&quot;,
+  id: &quot;sixth&quot;,
+  overlay: true,
+  highlight: true,
+  closeOnEscape: true,
+  title: &quot;Predicted Image&quot;
+});
+
+
+// ************** Generate the images  *****************
+
+outerWidth_input = (.78/4)*window.innerWidth; // 78% of the screen (div width) / 4 images = 1/5
+outerHeight_input = outerWidth_input; // make a square image
+
+outerWidth_output = outerWidth_input; // These have to be the same size still. Need to figure out how to account
+outerHeight_output = outerHeight_input; // for different translations of the zoom rects if we want these to be different. - Matt
+
+// Make the input and output images
+show_image(&quot;data/Height.txt&quot;, outerWidth_input, outerHeight_input, &quot;Height&quot;, &quot;#inputs&quot;);
+show_image(&quot;data/Potential.txt&quot;, outerWidth_input, outerHeight_input, &quot;Potential&quot;, &quot;#inputs&quot;);
+show_image(&quot;data/Phase.txt&quot;, outerWidth_input, outerHeight_input, &quot;Phase&quot;, &quot;#inputs&quot;);
+show_image(&quot;data/Amplitude.txt&quot;, outerWidth_input, outerHeight_input, &quot;Amplitude&quot;, &quot;#inputs&quot;);
+show_output(&quot;python/results/4_depth_5_trees.txt&quot;, &quot;python/results/4_depth_5_trees.txt&quot;, outerWidth_output, outerHeight_output, &quot;Photoluminescence (top:actual, bottom:predicted)&quot;, &quot;#output&quot;);
+show_output(&quot;data/Photoluminescence.txt&quot;, &quot;data/Photoluminescence.txt&quot;, outerWidth_output, outerHeight_output, &quot;Photoluminescence (actual)&quot;, &quot;#output&quot;);
+
+// ************** Generate the default tree diagram  *****************
+
+generate_tree(&quot;python/results/4_depth_1_trees_1_estimator.json&quot;);
+
+// ************** Generate the sliders  *****************
+depth_slider = d3.slider().scale(d3.scale.ordinal().domain([1,2,3,4,5]).rangePoints([0, 1], 0.5)).axis(d3.svg.axis()).snap(true).value(4);
+
+forest_slider = d3.slider().scale(d3.scale.ordinal().domain([1,2,3,4,5]).rangePoints([0, 1], 0.5)).axis(d3.svg.axis()).snap(true).value(4);
+    
+d3.select('.depth_slider').call(depth_slider);
+d3.select('.forest_slider').call(forest_slider);
+    
+depth_slider.on(&quot;slide&quot;, function(evt, value) {
+        update(value);
+    });
+    
+forest_slider.on(&quot;slide&quot;, function(evt, value) {
+        update_forest(value);
+    });
+
+// Value is the value of the slider (i.e. the Tree Depth or # of Trees etc.)
+function update(value) {
+    var dataset = &quot;python/results/&quot; + value + &quot;_depth_&quot; + forest_slider.value() + &quot;_trees.txt&quot;;
+    var tree = value + &quot;_depth_4_trees_1_estimator.json&quot;;
+    console.log(dataset);
+    update_output(dataset, dataset, outerWidth_output, outerHeight_output, &quot;Photoluminescence&quot;, &quot;#output&quot;);
+    generate_tree(&quot;python/results/&quot; + tree); 
+}
+function update_forest(value) {
+    var dataset = &quot;python/results/&quot; + depth_slider.value() + &quot;_depth_&quot; + value + &quot;_trees.txt&quot;;
+    console.log(dataset);
+    update_output(dataset, dataset, outerWidth_output, outerHeight_output, &quot;Photoluminescence&quot;, &quot;#output&quot;);
+}
+
+
+// The variable trees_drawn is used to 
+// determine whether draw_tree is drawing the first
+// tree or re-drawing a new one. 
+// If it is a replacement tree, we want to delete the old one. 
+var trees_drawn = 1
+
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+
+</description>
+        <pubDate>Tue, 09 Aug 2016 00:00:00 -0700</pubDate>
+        <link>/2016/08/09/random-forests.html</link>
+        <guid isPermaLink="true">/2016/08/09/random-forests.html</guid>
+      </item>
+    
+      <item>
+        <title>Learning About Random Forests</title>
+        <description>&lt;p&gt;This visualization was created as an assignment for CSE 512 at the University of Washington.&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/p&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot; /&gt;
+&lt;style&gt;
+
+body {
+  font: 10px sans-serif;
+  width: 100%;
+  display: block;
+}
+
+.label {
+  font-weight: bold;
+}
+
+.tile, .zoom {
+  shape-rendering: crispEdges;
+}
+
+.zoom { 
+  pointer-events: none;
+  stroke: #000;
+  stroke-width:2.5px;
+}
+
+#zoom_0 { 
+  stroke: #D62728; &lt;!-- Height --&gt;
+}
+
+#zoom_1 { 
+  stroke: #1F77B4; &lt;!-- Potential --&gt;
+}
+
+#zoom_2 {  
+  stroke: #FF7F0E; &lt;!-- Phase --&gt;
+}
+
+#zoom_3 { 
+  stroke: #2CA02C; &lt;!-- Amplitude --&gt;
+}
+
+.cell-hover {
+        stroke: #F00;
+        stroke-width:2.5px;   
+      }
+
+.title {
+    font-size: 14px;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+#inputs {
+    width: 78%;
+    float: right;
+    white-space: nowrap; &lt;!-- keep everything on one line --&gt;
+    vertical-align: top;
+    overflow: hidden;
+    text-align: center;
+}
+
+#interactions {
+    width: 18%;
+    float: left;
+    text-align: center;
+}
+
+#tree {
+    width: 65%;
+    float: left;
+    text-align: center;
+}
+
+#output {
+    width: 30%;
+    float: right;
+    text-align: center;
+}
+
+.node circle {
+    fill: #6D7B8D;
+    stroke: #6D7B8D;
+    //fill: #f1f1f1;
+    //stroke: #f1f1f1;
+    //stroke-width: 1px;
+}
+
+.node text { font: 12px sans-serif; }
+
+.link {
+    fill: none;
+    stroke: #ccc;
+    //stroke-width: 2px; // use tree structure to set tree line width
+
+}
+
+.axis {
+  font: 10px sans-serif;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+.axis .domain {
+  fill: none;
+  stroke: #000;
+  stroke-opacity: .3;
+  stroke-width: 10px;
+  stroke-linecap: round;
+}
+
+.axis .halo {
+  fill: none;
+  stroke: #ddd;
+  stroke-width: 8px;
+  stroke-linecap: round;
+}
+
+.slider .handle {
+  fill: #fff;
+  stroke: #000;
+  stroke-opacity: .5;
+  stroke-width: 1.25px;
+  cursor: crosshair;
+}
+
+
+
+&lt;/style&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;css/d3.slider.css&quot; /&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;css/guiders.css&quot; /&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;./d3/d3.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;./scripts/d3.slider.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;./scripts/d3-scale.v0.7.min.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;./scripts/tree_styling.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;./scripts/generate_images.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;./scripts/generate_tree.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;./scripts/slider.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;./scripts/jquery.min.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;./scripts/guiders.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div id=&quot;interactions&quot;&gt;&lt;h1&gt;Parameters&lt;/h1&gt;
+    Tree Depth&lt;br /&gt;
+    &lt;div class=&quot;depth_slider&quot;&gt;&lt;/div&gt;
+    &lt;br /&gt;
+    Number of Trees in Forest&lt;br /&gt;
+    &lt;div class=&quot;forest_slider&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;inputs&quot;&gt;&lt;h1&gt;Features&lt;/h1&gt;&lt;/div&gt;
+&lt;div id=&quot;tree&quot;&gt;&lt;h1&gt;Tree&lt;/h1&gt;&lt;/div&gt;
+&lt;div id=&quot;output&quot;&gt;&lt;h1&gt;Outputs&lt;/h1&gt;&lt;/div&gt;
+
+&lt;script&gt;
+
+// ************** Generate Guiders  *****************
+
+guiders.createGuider({
+  buttons: [{name: &quot;Next&quot;}],
+  description: &quot;To exit the tutorial hit the escape key. Otherwise hit next!&quot;,
+  id: &quot;first&quot;,
+  next: &quot;second&quot;,
+  overlay:true,
+  title: &quot;Welcome to the Decision Forests online teaching tutorial!&quot;,
+  closeOnEscape: true,
+  onClose: guiders.hideAll()
+}).show();
+
+guiders.createGuider({
+  attachTo: inputs,
+  position: 6,
+  buttons: [{name: &quot;Next&quot;}],
+  description: &quot;In this dataset are four atomic force microscopy images of a perovskite solar cell. We use these to predict the spatial mapping of the material’s photoluminescence. As you mouse over the pixels, your cursor highlights where this portion of material maps to the other images. The top portions of these images represent the training data, while the bottom portions are the pixels our learning algorithm will use to make a prediction.&quot;,
+  id: &quot;second&quot;,
+  next: &quot;third&quot;,
+  overlay: true,
+  highlight: true,
+  closeOnEscape: true,
+  title: &quot;Inputs&quot;
+});
+
+guiders.createGuider({
+  attachTo: interactions,
+  position: 6,
+  offset: { right: 100 , top: +100},
+  buttons: [{name: &quot;Next&quot;}],
+  description: &quot;Random forests learning algorithms have two major parameters a user can specify: tree depth and the number of trees in the forest. Adjust the slide bars to see how they affect the algorithm’s performance.&quot;,
+  id: &quot;third&quot;,
+  next: &quot;fifth&quot;,
+  closeOnEscape: true,
+  overlay: true,
+  highlight: true,
+  title: &quot;Random Forest Parameters&quot;
+});
+
+guiders.createGuider({
+  attachTo: tree,
+  position: 2,
+//  offset: { left: -100, top: +200},
+  buttons: [{name: &quot;Next&quot;}],
+  description: &quot;Here is one of the trees that are generated from the learning algorithm. In the event that you choose a single tree in the slider bar, that tree is representative of the entire mapping from input features to output! When multiple trees are generated, the prediction is the average of the ensemble of trees.&quot;,
+  id: &quot;fifth&quot;,
+  next: &quot;sixth&quot;,
+  overlay: true,
+  highlight: true,
+  closeOnEscape: true,
+  title: &quot;Tree Structure&quot;
+});
+
+guiders.createGuider({
+  attachTo: output,
+  position: 10,
+//  offset: {right: +100, top: +200},
+  buttons: [{name: &quot;Close&quot;}],
+  description: &quot;Here are the results of the learning algorithm. As in the ‘features’ images, the top portion of the image represents the training data, while the bottom half of the image is the prediction.&quot;,
+  id: &quot;sixth&quot;,
+  overlay: true,
+  highlight: true,
+  closeOnEscape: true,
+  title: &quot;Predicted Image&quot;
+});
+
+
+// ************** Generate the images  *****************
+
+outerWidth_input = (.78/4)*window.innerWidth; // 78% of the screen (div width) / 4 images = 1/5
+outerHeight_input = outerWidth_input; // make a square image
+
+outerWidth_output = outerWidth_input; // These have to be the same size still. Need to figure out how to account
+outerHeight_output = outerHeight_input; // for different translations of the zoom rects if we want these to be different. - Matt
+
+// Make the input and output images
+show_image(&quot;data/Height.txt&quot;, outerWidth_input, outerHeight_input, &quot;Height&quot;, &quot;#inputs&quot;);
+show_image(&quot;data/Potential.txt&quot;, outerWidth_input, outerHeight_input, &quot;Potential&quot;, &quot;#inputs&quot;);
+show_image(&quot;data/Phase.txt&quot;, outerWidth_input, outerHeight_input, &quot;Phase&quot;, &quot;#inputs&quot;);
+show_image(&quot;data/Amplitude.txt&quot;, outerWidth_input, outerHeight_input, &quot;Amplitude&quot;, &quot;#inputs&quot;);
+show_output(&quot;python/results/4_depth_5_trees.txt&quot;, &quot;python/results/4_depth_5_trees.txt&quot;, outerWidth_output, outerHeight_output, &quot;Photoluminescence (top:actual, bottom:predicted)&quot;, &quot;#output&quot;);
+show_output(&quot;data/Photoluminescence.txt&quot;, &quot;data/Photoluminescence.txt&quot;, outerWidth_output, outerHeight_output, &quot;Photoluminescence (actual)&quot;, &quot;#output&quot;);
+
+// ************** Generate the default tree diagram  *****************
+
+generate_tree(&quot;python/results/4_depth_1_trees_1_estimator.json&quot;);
+
+// ************** Generate the sliders  *****************
+depth_slider = d3.slider().scale(d3.scale.ordinal().domain([1,2,3,4,5]).rangePoints([0, 1], 0.5)).axis(d3.svg.axis()).snap(true).value(4);
+
+forest_slider = d3.slider().scale(d3.scale.ordinal().domain([1,2,3,4,5]).rangePoints([0, 1], 0.5)).axis(d3.svg.axis()).snap(true).value(4);
+    
+d3.select('.depth_slider').call(depth_slider);
+d3.select('.forest_slider').call(forest_slider);
+    
+depth_slider.on(&quot;slide&quot;, function(evt, value) {
+        update(value);
+    });
+    
+forest_slider.on(&quot;slide&quot;, function(evt, value) {
+        update_forest(value);
+    });
+
+// Value is the value of the slider (i.e. the Tree Depth or # of Trees etc.)
+function update(value) {
+    var dataset = &quot;python/results/&quot; + value + &quot;_depth_&quot; + forest_slider.value() + &quot;_trees.txt&quot;;
+    var tree = value + &quot;_depth_4_trees_1_estimator.json&quot;;
+    console.log(dataset);
+    update_output(dataset, dataset, outerWidth_output, outerHeight_output, &quot;Photoluminescence&quot;, &quot;#output&quot;);
+    generate_tree(&quot;python/results/&quot; + tree); 
+}
+function update_forest(value) {
+    var dataset = &quot;python/results/&quot; + depth_slider.value() + &quot;_depth_&quot; + value + &quot;_trees.txt&quot;;
+    console.log(dataset);
+    update_output(dataset, dataset, outerWidth_output, outerHeight_output, &quot;Photoluminescence&quot;, &quot;#output&quot;);
+}
+
+
+// The variable trees_drawn is used to 
+// determine whether draw_tree is drawing the first
+// tree or re-drawing a new one. 
+// If it is a replacement tree, we want to delete the old one. 
+var trees_drawn = 1
+
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+
+</description>
+        <pubDate>Sun, 03 Jul 2016 00:00:00 -0700</pubDate>
+        <link>/2016/07/03/tree-learning-tutorial.html</link>
+        <guid isPermaLink="true">/2016/07/03/tree-learning-tutorial.html</guid>
+      </item>
+    
+      <item>
+        <title>Visualizing Yelp Data</title>
+        <description>&lt;p&gt;This visualization was created as an assignment for CSE 512 at the University of Washington. The tree is sorted vertically by total review count. Leaves are colored according to star rating (very green to less green based on d3 category20c colors) binned in increments of 1. To no surprise, Vegas had significantly more reviews than the other cities!&lt;/p&gt;
+
+&lt;p&gt;Every layer of the tree structure is sorted by total review count. This makes it fun to see, comparatively, what sorts of places are the most popular in a given city (Businesses, general vibes, and types of venues)!&lt;/p&gt;
+
+&lt;html lang=&quot;en&quot;&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot; /&gt;
+    &lt;title&gt;Yelp Trip Planner: Top Reviews&lt;/title&gt;
+    &lt;style&gt;
+	.node circle {
+	  fill: #fff;
+	  stroke: steelblue;
+	  stroke-width: 3px;
+	}
+	.node text { font: 12px sans-serif; }
+	.node {
+	  cursor: pointer;
+	}
+	.link {
+	  fill: none;
+	  stroke: #ccc;
+	  stroke-width: 2px;
+	}
+    &lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+&lt;!-- load the d3.js library --&gt;	
+&lt;script src=&quot;http://d3js.org/d3.v3.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+// ************** Generate the tree diagram	 *****************
+var margin = {top: 20, right: 120, bottom: 20, left: 120},
+	width = 1920 - margin.right - margin.left,
+	height = 1000 - margin.top - margin.bottom;
+var i = 0;
+	duration = 750;
+
+var tree = d3.layout.tree()
+	.size([height, width]);
+var diagonal = d3.svg.diagonal()
+	.projection(function(d) { return [d.y, d.x]; });
+var svg = d3.select(&quot;body&quot;).append(&quot;svg&quot;)
+	.attr(&quot;width&quot;, width + margin.right + margin.left)
+	.attr(&quot;height&quot;, height + margin.top + margin.bottom)
+  	.append(&quot;g&quot;)
+	.attr(&quot;transform&quot;, &quot;translate(&quot; + margin.left + &quot;,&quot; + margin.top + &quot;)&quot;);
+
+
+//&lt;!-- load the json file --&gt;
+var data;
+
+d3.json(&quot;http://wesleybeckner.github.io/assets/YALP_sauce.json&quot;, function(error, json) {
+data = json;
+console.log(data)
+var nested_data = d3.nest()
+			.key(function(d){return d.yelp;})
+			.key(function(d){return d.city;})
+			.key(function(d){return d.categories;})
+			.key(function(d){return d.attributes;})
+			.entries(data);
+
+console.log(nested_data)
+root = nested_data[0];
+root.x0 = height / 2;
+root.y0 = 0;
+
+var citycount = d3.nest()
+			.key(function(d){return d.yelp;})
+			.key(function(d){return d.city;})
+			.rollup(function(leaves) { return {&quot;city_review&quot;: d3.sum(leaves,
+				function(d) {return d.review_count;})}})
+			.entries(data);
+console.log(citycount)
+
+  function collapse(d) {
+    if (d.values) {
+      d._values = d.values;
+      d._values.forEach(collapse);
+      d.values = null;
+    }
+  }
+
+  root.values.forEach(collapse);
+
+update(root);
+});
+
+function update(source) {
+
+
+  // Compute the new tree layout.
+  var nodes = tree.nodes(root).reverse(),
+	  links = tree.links(nodes);
+	  children = tree.children(function(d) {return d.values;}) 
+
+  // Normalize for fixed-depth.
+  nodes.forEach(function(d) { d.y = d.depth * 180; });
+
+  // Update the nodes…
+  var node = svg.selectAll(&quot;g.node&quot;)
+	  .data(nodes, function(d) { return d.id || (d.id = ++i); })
+
+  // Enter any new nodes at the parent's previous position.
+  var nodeEnter = node.enter().append(&quot;g&quot;)
+	  .attr(&quot;class&quot;, &quot;node&quot;)
+	  .attr(&quot;transform&quot;, function(d) { return &quot;translate(&quot; + source.y0 + &quot;,&quot; + source.x0 + &quot;)&quot;; })
+	  .on(&quot;click&quot;, click);
+
+  nodeEnter.append(&quot;circle&quot;)
+	  .attr(&quot;r&quot;, 1e-6)
+	  .style(&quot;fill&quot;, function(d) { return d._values ? &quot;lightsteelblue&quot; : &quot;#fff&quot;; });
+
+  nodeEnter.append(&quot;text&quot;)
+	  .attr(&quot;x&quot;, function(d) { return d.values || d._values ? -13 : 13; })
+	  .attr(&quot;dy&quot;, &quot;.35em&quot;)
+	  .attr(&quot;text-anchor&quot;, function(d) { return d.values || d._values ? &quot;end&quot; : &quot;start&quot;; })
+	  .text(function(d) { if (d.key) {return d.key;} else { return d.name;} })
+	  .attr(&quot;data-legend&quot;, function(d){ if (d.key) {return d.key;} else { return d.name;} }) 
+	  .style(&quot;fill-opacity&quot;, 1e-6);
+
+
+  // Transition nodes to their new position.
+  var nodeUpdate = node.transition()
+	  .duration(duration)
+	  .attr(&quot;transform&quot;, function(d) { return &quot;translate(&quot; + d.y + &quot;,&quot; + d.x + &quot;)&quot;; });
+
+  nodeUpdate.select(&quot;circle&quot;)
+	  .attr(&quot;r&quot;, function(d) {if (d.review_count) {return Math.sqrt(d.review_count/3.14)*0.8;} else{ return 10;}})
+	  .style(&quot;fill&quot;, function(d) { return d._values ? &quot;lightsteelblue&quot; : &quot;#fff&quot;; })
+	  .style(&quot;stroke&quot;, function(d) {if (d.stars === 5) {return &quot;#31a354&quot;;} else if (d.stars
+		=== 4) {return &quot;#74c476&quot;;} else if (d.stars === 3) {return &quot;#a1d99b&quot;;} else if 
+		(d.stars === 2) {return &quot;#fd8d3c&quot;;} else if (d.stars === 1) {return
+		&quot;#e6550d&quot;;} else {return &quot;steelblue&quot;;}});
+
+  nodeUpdate.select(&quot;text&quot;)
+	  .style(&quot;fill-opacity&quot;, 1)
+	  .attr(&quot;x&quot;, function(d) {if (d.review_count) {return Math.sqrt(d.review_count/3.14)*2+13;} else { return d.values || d._values ? -13 : 13; } }  );
+ 
+
+  // Transition exiting nodes to the parent's new position.
+  var nodeExit = node.exit().transition()
+	  .duration(duration)
+	  .attr(&quot;transform&quot;, function(d) { return &quot;translate(&quot; + source.y + &quot;,&quot; + source.x + &quot;)&quot;; })
+	  .remove();
+
+  nodeExit.select(&quot;circle&quot;)
+	  .attr(&quot;r&quot;, 1e-6);
+
+  nodeExit.select(&quot;text&quot;)
+	  .style(&quot;fill-opacity&quot;, 1e-6);
+
+  // Update the links…
+  var link = svg.selectAll(&quot;path.link&quot;)
+	  .data(links, function(d) { return d.target.id; });
+
+  // Enter any new links at the parent's previous position.
+  link.enter().insert(&quot;path&quot;, &quot;g&quot;)
+	  .attr(&quot;class&quot;, &quot;link&quot;)
+	  .attr(&quot;d&quot;, function(d) {
+		var o = {x: source.x0, y: source.y0};
+		return diagonal({source: o, target: o});
+	  });
+
+  // Transition links to their new position.
+  link.transition()
+	  .duration(duration)
+	  .attr(&quot;d&quot;, diagonal);
+
+  // Transition exiting nodes to the parent's new position.
+  link.exit().transition()
+	  .duration(duration)
+	  .attr(&quot;d&quot;, function(d) {
+		var o = {x: source.x, y: source.y};
+		return diagonal({source: o, target: o});
+	  })
+	  .remove();
+
+  // Stash the old positions for transition.
+  nodes.forEach(function(d) {
+	d.x0 = d.x;
+	d.y0 = d.y;
+  });
+}
+
+// Toggle values on click.
+function click(d) {
+  if (d.values) {
+	d._values = d.values;
+	d.values = null;
+  } else {
+	d.values = d._values;
+	d._values = null;
+  }
+  update(d);
+}
+
+&lt;/script&gt;
+	
+  &lt;/body&gt;
+&lt;/html&gt;
+
+</description>
+        <pubDate>Mon, 02 May 2016 00:00:00 -0700</pubDate>
+        <link>/2016/05/02/yelp-data-visualization.html</link>
+        <guid isPermaLink="true">/2016/05/02/yelp-data-visualization.html</guid>
+      </item>
+    
+      <item>
         <title>Teaching big data in Excel</title>
         <description>&lt;p&gt;A couple weeks ago my PI asked me to create a lesson plan to teach junior level ChemE’s how to work with large data files in Excel. I mainly use Python now for everything I would use Excel for in undergrad. Nonetheless, with Excel being such a ubiquitous workplace tool, feeling comfortable solving equations and navigating a workbook will be valuable to most folks. The lesson plan is below.&lt;/p&gt;
 

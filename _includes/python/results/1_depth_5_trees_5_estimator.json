@@ -1,0 +1,3 @@
+[
+{"number of samples": "19910", "children": [{"number of samples": "3443", "name": "predicts 0.36 for 17.3 percent of the points", "percent": 17.29}, {"number of samples": "16467", "name": "predicts 0.73 for 82.7 percent of the points", "percent": 82.71}], "name": "Potential > 0.2462", "percent": 100.0}
+]

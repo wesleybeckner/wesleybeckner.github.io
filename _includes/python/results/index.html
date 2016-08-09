@@ -1,0 +1,40 @@
+var data = d3.select('#cars').html().trim();
+  data = d3.csv.parse(data, function (d) {
+    return {
+      model: d.Model,
+      origin: d.Origin,
+      year: +d.Year,
+      cylinders: +d.Cylinders,
+      horsepower: +d.Horsepower,
+      mpg: +d.MPG,
+      weight: +d.Weight
+    };
+  });
+
+// Create the SVG element
+var width = 500;
+var height = 400;
+
+var svg = d3.select('body')
+  .append('svg')
+  .attr('width', width)
+  .attr('height', height);
+
+// Calculate the max weight and car model names
+var max_weight = d3.max(data, function(d) {
+  return d.weight;
+});
+
+var model_names = data.map(function(d){
+  return d.model;
+});
+
+// Create the scales
+var x = d3.scale.linear()
+  .range([0, width])
+  .domain([0, max_weight]);
+
+var y = d3.scale.ordinal()
+  .domain(model_names)
+  .rangeRoundBands([ 0, height], 0.1);
+
