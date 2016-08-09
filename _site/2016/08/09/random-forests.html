@@ -305,16 +305,16 @@ outerWidth_output = outerWidth_input; // These have to be the same size still. N
 outerHeight_output = outerHeight_input; // for different translations of the zoom rects if we want these to be different. - Matt
 
 // Make the input and output images
-show_image("data/Height.txt", outerWidth_input, outerHeight_input, "Height", "#inputs");
-show_image("data/Potential.txt", outerWidth_input, outerHeight_input, "Potential", "#inputs");
-show_image("data/Phase.txt", outerWidth_input, outerHeight_input, "Phase", "#inputs");
-show_image("data/Amplitude.txt", outerWidth_input, outerHeight_input, "Amplitude", "#inputs");
-show_output("python/results/4_depth_5_trees.txt", "python/results/4_depth_5_trees.txt", outerWidth_output, outerHeight_output, "Photoluminescence (top:actual, bottom:predicted)", "#output");
-show_output("data/Photoluminescence.txt", "data/Photoluminescence.txt", outerWidth_output, outerHeight_output, "Photoluminescence (actual)", "#output");
+show_image("http://wesleybeckner.github.io/assets/data/Height.txt", outerWidth_input, outerHeight_input, "Height", "#inputs");
+show_image("http://wesleybeckner.github.io/assets/data/Potential.txt", outerWidth_input, outerHeight_input, "Potential", "#inputs");
+show_image("http://wesleybeckner.github.io/assets/data/Phase.txt", outerWidth_input, outerHeight_input, "Phase", "#inputs");
+show_image("http://wesleybeckner.github.io/assets/data/Amplitude.txt", outerWidth_input, outerHeight_input, "Amplitude", "#inputs");
+show_output("http://wesleybeckner.github.io/assets/python/results/4_depth_5_trees.txt", "http://wesleybeckner.github.io/assets/python/results/4_depth_5_trees.txt", outerWidth_output, outerHeight_output, "Photoluminescence (top:actual, bottom:predicted)", "#output");
+show_output("http://wesleybeckner.github.io/assets/data/Photoluminescence.txt", "http://wesleybeckner.github.io/assets/data/Photoluminescence.txt", outerWidth_output, outerHeight_output, "Photoluminescence (actual)", "#output");
 
 // ************** Generate the default tree diagram  *****************
 
-generate_tree("python/results/4_depth_1_trees_1_estimator.json");
+generate_tree("http://wesleybeckner.github.io/assets/python/results/4_depth_1_trees_1_estimator.json");
 
 // ************** Generate the sliders  *****************
 depth_slider = d3.slider().scale(d3.scale.ordinal().domain([1,2,3,4,5]).rangePoints([0, 1], 0.5)).axis(d3.svg.axis()).snap(true).value(4);
@@ -334,14 +334,14 @@ forest_slider.on("slide", function(evt, value) {
 
 // Value is the value of the slider (i.e. the Tree Depth or # of Trees etc.)
 function update(value) {
-    var dataset = "python/results/" + value + "_depth_" + forest_slider.value() + "_trees.txt";
+    var dataset = "http://wesleybeckner.github.io/assets/python/results/" + value + "_depth_" + forest_slider.value() + "_trees.txt";
     var tree = value + "_depth_4_trees_1_estimator.json";
     console.log(dataset);
     update_output(dataset, dataset, outerWidth_output, outerHeight_output, "Photoluminescence", "#output");
-    generate_tree("python/results/" + tree); 
+    generate_tree("http://wesleybeckner.github.io/assets/python/results/" + tree); 
 }
 function update_forest(value) {
-    var dataset = "python/results/" + depth_slider.value() + "_depth_" + value + "_trees.txt";
+    var dataset = "http://wesleybeckner.github.io/assets/python/results/" + depth_slider.value() + "_depth_" + value + "_trees.txt";
     console.log(dataset);
     update_output(dataset, dataset, outerWidth_output, outerHeight_output, "Photoluminescence", "#output");
 }

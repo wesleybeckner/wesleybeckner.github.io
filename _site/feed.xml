@@ -248,16 +248,16 @@ outerWidth_output = outerWidth_input; // These have to be the same size still. N
 outerHeight_output = outerHeight_input; // for different translations of the zoom rects if we want these to be different. - Matt
 
 // Make the input and output images
-show_image(&quot;data/Height.txt&quot;, outerWidth_input, outerHeight_input, &quot;Height&quot;, &quot;#inputs&quot;);
-show_image(&quot;data/Potential.txt&quot;, outerWidth_input, outerHeight_input, &quot;Potential&quot;, &quot;#inputs&quot;);
-show_image(&quot;data/Phase.txt&quot;, outerWidth_input, outerHeight_input, &quot;Phase&quot;, &quot;#inputs&quot;);
-show_image(&quot;data/Amplitude.txt&quot;, outerWidth_input, outerHeight_input, &quot;Amplitude&quot;, &quot;#inputs&quot;);
-show_output(&quot;python/results/4_depth_5_trees.txt&quot;, &quot;python/results/4_depth_5_trees.txt&quot;, outerWidth_output, outerHeight_output, &quot;Photoluminescence (top:actual, bottom:predicted)&quot;, &quot;#output&quot;);
-show_output(&quot;data/Photoluminescence.txt&quot;, &quot;data/Photoluminescence.txt&quot;, outerWidth_output, outerHeight_output, &quot;Photoluminescence (actual)&quot;, &quot;#output&quot;);
+show_image(&quot;http://wesleybeckner.github.io/assets/data/Height.txt&quot;, outerWidth_input, outerHeight_input, &quot;Height&quot;, &quot;#inputs&quot;);
+show_image(&quot;http://wesleybeckner.github.io/assets/data/Potential.txt&quot;, outerWidth_input, outerHeight_input, &quot;Potential&quot;, &quot;#inputs&quot;);
+show_image(&quot;http://wesleybeckner.github.io/assets/data/Phase.txt&quot;, outerWidth_input, outerHeight_input, &quot;Phase&quot;, &quot;#inputs&quot;);
+show_image(&quot;http://wesleybeckner.github.io/assets/data/Amplitude.txt&quot;, outerWidth_input, outerHeight_input, &quot;Amplitude&quot;, &quot;#inputs&quot;);
+show_output(&quot;http://wesleybeckner.github.io/assets/python/results/4_depth_5_trees.txt&quot;, &quot;http://wesleybeckner.github.io/assets/python/results/4_depth_5_trees.txt&quot;, outerWidth_output, outerHeight_output, &quot;Photoluminescence (top:actual, bottom:predicted)&quot;, &quot;#output&quot;);
+show_output(&quot;http://wesleybeckner.github.io/assets/data/Photoluminescence.txt&quot;, &quot;http://wesleybeckner.github.io/assets/data/Photoluminescence.txt&quot;, outerWidth_output, outerHeight_output, &quot;Photoluminescence (actual)&quot;, &quot;#output&quot;);
 
 // ************** Generate the default tree diagram  *****************
 
-generate_tree(&quot;python/results/4_depth_1_trees_1_estimator.json&quot;);
+generate_tree(&quot;http://wesleybeckner.github.io/assets/python/results/4_depth_1_trees_1_estimator.json&quot;);
 
 // ************** Generate the sliders  *****************
 depth_slider = d3.slider().scale(d3.scale.ordinal().domain([1,2,3,4,5]).rangePoints([0, 1], 0.5)).axis(d3.svg.axis()).snap(true).value(4);
@@ -277,14 +277,14 @@ forest_slider.on(&quot;slide&quot;, function(evt, value) {
 
 // Value is the value of the slider (i.e. the Tree Depth or # of Trees etc.)
 function update(value) {
-    var dataset = &quot;python/results/&quot; + value + &quot;_depth_&quot; + forest_slider.value() + &quot;_trees.txt&quot;;
+    var dataset = &quot;http://wesleybeckner.github.io/assets/python/results/&quot; + value + &quot;_depth_&quot; + forest_slider.value() + &quot;_trees.txt&quot;;
     var tree = value + &quot;_depth_4_trees_1_estimator.json&quot;;
     console.log(dataset);
     update_output(dataset, dataset, outerWidth_output, outerHeight_output, &quot;Photoluminescence&quot;, &quot;#output&quot;);
-    generate_tree(&quot;python/results/&quot; + tree); 
+    generate_tree(&quot;http://wesleybeckner.github.io/assets/python/results/&quot; + tree); 
 }
 function update_forest(value) {
-    var dataset = &quot;python/results/&quot; + depth_slider.value() + &quot;_depth_&quot; + value + &quot;_trees.txt&quot;;
+    var dataset = &quot;http://wesleybeckner.github.io/assets/python/results/&quot; + depth_slider.value() + &quot;_depth_&quot; + value + &quot;_trees.txt&quot;;
     console.log(dataset);
     update_output(dataset, dataset, outerWidth_output, outerHeight_output, &quot;Photoluminescence&quot;, &quot;#output&quot;);
 }
