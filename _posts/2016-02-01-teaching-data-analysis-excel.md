@@ -1,5 +1,5 @@
 ---
-title: "Teaching big data in Excel"
+title: "Big Data in Excel"
 layout: post
 ---
 

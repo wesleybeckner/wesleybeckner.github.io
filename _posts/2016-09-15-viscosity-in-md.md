@@ -1,5 +1,5 @@
 ---
-title: "Viscosity in molecular dynamics"
+title: "Viscosity in Molecular Dynamics"
 layout: post
 ---
 
