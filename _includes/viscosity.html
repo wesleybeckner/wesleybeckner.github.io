@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
 
@@ -176,7 +177,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Viscosity-in-molecular-dynamics">Viscosity in molecular dynamics<a class="anchor-link" href="#Viscosity-in-molecular-dynamics">&#182;</a></h1><h3 id="Concept:-Force-/-Area"><em>Concept:</em> Force / Area<a class="anchor-link" href="#Concept:-Force-/-Area">&#182;</a></h3><p>The idea of viscous forces is somewhat analogous to pressure in that the significan parameter is the force acting per unit area. Physically, however, it is completely different. In the case of viscous forces, the force is acting parallel to the area, not perpendicular to it as is the case of pressure.</p>
+<h1 id="Viscosity-in-molecular-dynamics">Viscosity in molecular dynamics<a class="anchor-link" href="#Viscosity-in-molecular-dynamics">&#182;</a></h1><h3 id="Concept:-Force-/-Area"><em>Concept:</em> Force / Area<a class="anchor-link" href="#Concept:-Force-/-Area">&#182;</a></h3><p>The idea of viscous forces is somewhat analogous to pressure in that the significan parameter is the force acting per unit area. Physically, however, it is completely different. In the case of viscous forces, the force is acting parallel to the area, not perpendicular to it as is the case for pressure.</p>
 <p>Newton considered a fluid sandwiched between two plates, with the top plate in motion and the bottom stationary. He conjectured that the necessary force per unit area, F/A,  to incite the fluid would be proportional to the velocity gradient in the fluid:</p>
 <p>$\frac{F}{A} = \frac{\eta v_{0}}{d}$</p>
 <p>where $v_{0}$ is the speed of the top plate, $\eta$ is the viscosity coefficient, and $d$ is the distance between the plates. $\frac{F}{A}$ is the rate at which momentum in the x-direction is being supplied per unit area to the fluid. This will be explained further in the following section.</p>
@@ -248,7 +249,9 @@ div#notebook {
 <p>$0.59 A < \frac{1}{rotational correlation}$</p>
 <p>The rotational correlation time for many liquids is around 10 ps according to the GROMACS manual. ILs, however, can range from 1-10 ps within temperature ranges of 300-400 K (Merunka et al. 2015, Ingram et al. 2003).</p>
 <p>In this case A should be smaller than 0.59 (low correlation time) or 0.17 (high correlation time). Correlation time decreases with increasing temperature. We can conclude that: higher temperatures and higher viscosities support higher acceleration factors.</p>
-<h3 id="Other-GROMACS-considerations">Other GROMACS considerations<a class="anchor-link" href="#Other-GROMACS-considerations">&#182;</a></h3>
+<h3 id="Other-GROMACS-considerations">Other GROMACS considerations<a class="anchor-link" href="#Other-GROMACS-considerations">&#182;</a></h3><p>The GROMACS manual outlines two other important considerations: $l_{z}$ and keeping the system near equilibrium.</p>
+<h3 id="Other-IL-considerations">Other IL considerations<a class="anchor-link" href="#Other-IL-considerations">&#182;</a></h3><p>Some ILs have been reported to be non-newtonian (Burrell et al. 2010). In the case of BMIM Chloride, non-Newtonian behavior was observed at a shear rate above approximately $10^3 s^-1$. Interestingly, calculating the viscosity in this non-Newtonian regime this would put us above our limit instigated by the correlation time.</p>
+
 </div>
 </div>
 </div>
