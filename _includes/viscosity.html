@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
 
@@ -176,11 +177,11 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Viscosity-in-molecular-dynamics">Viscosity in molecular dynamics<a class="anchor-link" href="#Viscosity-in-molecular-dynamics">&#182;</a></h1><h3 id="Concept:-Force-/-Area"><em>Concept:</em> Force / Area<a class="anchor-link" href="#Concept:-Force-/-Area">&#182;</a></h3><p>The idea of viscous forces is somewhat analogous to pressure in that the significan parameter is the force acting per unit area. Physically, however, it is completely different. In the case of viscous forces, the force is acting parallel to the area, not perpendicular to it as is the case for pressure.</p>
-<p>Newton considered a fluid sandwiched between two plates, with the top plate in motion and the bottom stationary. He conjectured that the necessary force per unit area, F/A,  to incite the fluid would be proportional to the velocity gradient in the fluid:</p>
+<h1 id="Viscosity-in-molecular-dynamics">Viscosity in molecular dynamics<a class="anchor-link" href="#Viscosity-in-molecular-dynamics">&#182;</a></h1><h3 id="Viscosity-is-related-to-pressure">Viscosity is related to pressure<a class="anchor-link" href="#Viscosity-is-related-to-pressure">&#182;</a></h3><p>The idea of viscous forces is somewhat analogous to pressure in that the significant parameter is the force acting per unit area. These forces differ, however, in the direction of the applied force. In the case of viscous forces, the force is acting parallel to the area, whereas for pressure the force is acting perpendicular to area.</p>
+<p>Newton considered a fluid sandwiched between two plates, with the top plate in motion and the bottom stationary. He conjectured that the necessary force per unit area, F/A, to incite the fluid would be proportional to the velocity gradient in the fluid:</p>
 <p>$\frac{F}{A} = \frac{\eta v_{0}}{d}$</p>
 <p>where $v_{0}$ is the speed of the top plate, $\eta$ is the viscosity coefficient, and $d$ is the distance between the plates. $\frac{F}{A}$ is the rate at which momentum in the x-direction is being supplied per unit area to the fluid. This will be explained further in the following section.</p>
-<h3 id="Concept:-Viscous-force-may-be-interpreted-as-a-rate-of-transfer-of-momentum-into-the-fluid"><em>Concept:</em> Viscous force may be interpreted as a rate of transfer of momentum into the fluid<a class="anchor-link" href="#Concept:-Viscous-force-may-be-interpreted-as-a-rate-of-transfer-of-momentum-into-the-fluid">&#182;</a></h3><p>The conservation of momentum dictates that some kinetic energy will be lost&mdash;transformed into heat energy&mdash;as momentum is transfered between particles of a fluid.</p>
+<h3 id="Viscous-force-may-be-interpreted-as-a-rate-of-transfer-of-momentum-into-the-fluid">Viscous force may be interpreted as a rate of transfer of momentum into the fluid<a class="anchor-link" href="#Viscous-force-may-be-interpreted-as-a-rate-of-transfer-of-momentum-into-the-fluid">&#182;</a></h3><p>The conservation of momentum dictates that some kinetic energy will be lost&mdash;transformed into heat energy&mdash;as momentum is transfered between particles of a fluid.</p>
 <p><em>Exercise: It is simple to prove this to oneself. Consider a mass m of fluid moving at v1 and a mass m moving at v2 in the same direction. Momentum conservation tells us that the mixed mass 2m moves at ½( v1 + v2). Show that the total kinetic energy has decreased if v1, v2 are unequal.</em></p>
 <p><em>This is the fraction of the kinetic energy that has disappeared into heat</em></p>
 <p>In this way, we can see that the viscosity coefficient, $\eta$, is the measure of friction, i.e. it represents the dissipation into heat energy from the kinetic energy of the particles as momentum is transfered. (Note: there is also a contribution to viscosity from the <em>passive</em> diffusion of particles but this is more prominant for gases than for liquids)</p>
@@ -196,8 +197,7 @@ div#notebook {
 <p>$\eta = \frac{A}{V}\rho(\frac{l_{z}}{2\pi})^2$</p>
 <p>which is supplied in the output file as $\frac{1}{\eta}$ and V is defined as:</p>
 <p>$V = \frac{\sum_{i=1}^N m_{i}v_{i,x} 2 \cos \frac{2 \pi z}{l_{z}}}{\sum_{i=1}^N m_{i}}$</p>
-<p>According to the gromacs manual, V should be as large as possible&mdash;without moving too far from equilibrium&mdash;to get good statistics. In my initial viscosity calculations, I was outputing <em>negative</em> values for $1/\eta$. The most obvious source of this is from the $v_{i,x}$ summations in $V$&mdash;which means that $V$ in many cases is not very large at all, in fact it is possibly oscillating around 0. The reason for negative $v_{i,x}$ values is that the acceleration pertubation is not achieving an overall bulk flow in the fluid.</p>
-<p>Moving forward, one would have to determine the maximum shear rate (less that one over the longest correlation time in the system). The maximum shear rate:</p>
+<p>According to the gromacs manual, V should be as large as possible&mdash;without moving too far from equilibrium&mdash;to get good statistics. Moving forward, one would have to determine the maximum shear rate (less that one over the longest correlation time in the system). The maximum shear rate:</p>
 <p>$sh_{max} = max_z |\frac{\partial v_{x}(z)}{\partial z}| = A \frac{\rho}{\eta} \frac{l_{z}}{2 pi}$</p>
 <p>occurs where the cosine is zero. In the case of BMIM Chloride:</p>
 
@@ -206,7 +206,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="kn">import</span> <span class="nn">math</span>
@@ -226,7 +226,7 @@ div#notebook {
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[13]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[1]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -261,7 +261,7 @@ div#notebook {
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Equilibrium-simulations">Equilibrium simulations<a class="anchor-link" href="#Equilibrium-simulations">&#182;</a></h2><p>The <strong>Einstein relation</strong> states that:</p>
 <p>$\eta= \frac{1}{2} \frac{V}{K_{B}T} \lim_{t \to \infty} \frac{d}{dt} \langle ( \int_{t_{0}}^{t_{0} + t} P_{\alpha \beta}(t') \, \mathrm{d}t')^2 \rangle_{t_{0}}$</p>
-<p>Which is equivalent to the <strong>Green-Kubo</strong> formula:</p>
+<p>Which is fundamentally equivalent to the following <strong>Green-Kubo</strong> relation:</p>
 <p>$\eta= \frac{V}{K_{B}T} \int_{0}^{\infty} \langle P_{\alpha \beta}(t_{0}) \cdot P_{\alpha \beta}(t-t_{0}) \rangle \, \mathrm{d}t$</p>
 <p>These are dependent on the off-diagonal components of the stress tensor, $P_{\alpha \beta}$. Short <em>simulation times</em> and short <em>electrostatic cut-offs</em> result in large noise in these elements. If length and cut-offs are sufficient, however, g_energy can be used to calculate the viscosity.</p>
 
