@@ -1,7 +1,7 @@
 # Site settings
 title: Wesley Beckner
 name: Wesley Beckner
-description: "Research and Teaching Website for Wesley Beckner."
+description: "Research and Teaching Website for Wesley Beckner"
 baseurl: ""
 url: "http://wesleybeckner.github.io" # "http://localhost:4000" #
 linkedin_username: wesley-beckner-b5631ab5
