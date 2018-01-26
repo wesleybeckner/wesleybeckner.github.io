@@ -239,7 +239,7 @@ th {
     page-break-inside: avoid;
   }
   img {
-    max-width: 100% !important;
+    max-width: 50% !important;
   }
   p,
   h2,
@@ -1131,7 +1131,7 @@ img {
 .carousel-inner &gt; .item &gt; img,
 .carousel-inner &gt; .item &gt; a &gt; img {
   display: block;
-  max-width: 100%;
+  max-width: 50%;
   height: auto;
 }
 .img-rounded {
@@ -1147,7 +1147,7 @@ img {
   -o-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
   display: inline-block;
-  max-width: 100%;
+  max-width: 50%;
   height: auto;
 }
 .img-circle {
@@ -2270,7 +2270,7 @@ th {
 }
 .table {
   width: 100%;
-  max-width: 100%;
+  max-width: 50%;
   margin-bottom: 18px;
 }
 .table &gt; thead &gt; tr &gt; th,
@@ -2515,7 +2515,7 @@ legend {
 }
 label {
   display: inline-block;
-  max-width: 100%;
+  max-width: 50%;
   margin-bottom: 5px;
   font-weight: bold;
 }
@@ -3751,7 +3751,7 @@ tbody.collapse.in {
   display: block;
   float: none;
   width: 100%;
-  max-width: 100%;
+  max-width: 50%;
 }
 .btn-group-vertical &gt; .btn-group &gt; .btn {
   float: none;
@@ -4983,7 +4983,7 @@ a.badge:focus {
   padding-right: 0px;
 }
 .jumbotron .container {
-  max-width: 100%;
+  max-width: 50%;
 }
 @media screen and (min-width: 768px) {
   .jumbotron {
@@ -6590,7 +6590,7 @@ button.close {
     display: inline-block !important;
   }
 }
-@media (min-width: 768px) and (max-width: 991px) {
+@media (min-width: 100px) and (max-width: 300px) {
   .visible-sm {
     display: block !important;
   }
@@ -10007,7 +10007,7 @@ div.output_area .rendered_html img {
 }
 div.output_area img,
 div.output_area svg {
-  max-width: 100%;
+  max-width: 50%;
   height: auto;
 }
 div.output_area img.unconfined,
@@ -10311,7 +10311,7 @@ div.output_unrecognized a:hover {
 }
 .rendered_html img,
 .rendered_html svg {
-  max-width: 100%;
+  max-width: 50%;
   height: auto;
 }
 .rendered_html img.unconfined,
@@ -11784,7 +11784,7 @@ div#notebook {
 &lt;/div&gt;
 &lt;div class=&quot;inner_cell&quot;&gt;
 &lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;I've recently been constructing a genetic algorithm (GA) to design solvents for batteries. This has been really fun! I was initially motivated to look into GAs after attending a seminar by &amp;lt;a href=http://pure.au.dk/portal/en/persons/id(42b599ae-3c1c-4a97-9b90-374393df2fde).html&amp;gt;Bjørk Hammer&amp;lt;/a&amp;gt; where he described using a simple GA that only performed mutations (no crossover, single parents, etc.) to resolve crystal structures of &lt;a href=&quot;https://www.scopus.com/record/display.uri?eid=2-s2.0-84905641049&amp;amp;origin=inward&amp;amp;txGid=df0b8014858ea68bbc811b80b343c3d2&quot;&gt;metal complexes&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I've recently been constructing a genetic algorithm (GA) to design solvents for batteries. This has been really fun! I was initially motivated to look into GAs after attending a seminar by Bjørk Hammer where he described using a simple GA that only performed mutations (no crossover, single parents, etc.) to resolve crystal structures of &lt;a href=&quot;https://www.scopus.com/record/display.uri?eid=2-s2.0-84905641049&amp;amp;origin=inward&amp;amp;txGid=df0b8014858ea68bbc811b80b343c3d2&quot;&gt;metal complexes&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;It's been incredibly handy to use the cheminformatics module &lt;a href=&quot;http://www.rdkit.org/docs/index.html&quot;&gt;RDKit&lt;/a&gt; as a starting place. My code is hosted on &lt;a href=&quot;https://pypi.python.org/pypi/gains/0.2.dev18&quot;&gt;pypi&lt;/a&gt; and &lt;a href=&quot;https://github.com/wesleybeckner/gains&quot;&gt;github&lt;/a&gt; and can be installed with:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;pip install gains&lt;/code&gt;&lt;/pre&gt;
@@ -13587,7 +13587,7 @@ var svg = d3.select(&quot;body&quot;).append(&quot;svg&quot;)
 //&lt;!-- load the json file --&gt;
 var data;
 
-d3.json(&quot;http://wesleybeckner.github.io/assets/YALP_sauce.json&quot;, function(error, json) {
+d3.json(&quot;http://localhost:4000/assets/YALP_sauce.json&quot;, function(error, json) {
 data = json;
 console.log(data)
 var nested_data = d3.nest()

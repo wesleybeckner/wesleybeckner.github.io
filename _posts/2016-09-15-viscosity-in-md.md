@@ -1,6 +1,6 @@
 ---
 title: "Viscosity in Molecular Dynamics"
-layout: page
+layout: notebook
 ---
 
 {% include viscosity.html %}

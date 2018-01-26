@@ -7,7 +7,7 @@
     <title>Genetic Algorithm for Identifying Novel Structures</title>
     <meta name="viewport" content="width=device-width">
     <meta name="description" content="Research and Teaching Website for Wesley Beckner">
-    <link rel="canonical" href="http://wesleybeckner.github.io/2018/01/08/GAINS.html">
+    <link rel="canonical" href="http://localhost:4000/2018/01/08/GAINS.html">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/main.css">
@@ -55,15 +55,17 @@
 </header>
 
 
+      <div class="post">
     <div class="page-content">
       <div class="wrap">
-      <div class="post">
-  <script type="text/javascript"
-      src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-  </script>
+
   <header class="post-header">
     <h1>Genetic Algorithm for Identifying Novel Structures</h1>
+    <p class="meta">Jan 8, 2018</p>
   </header>
+      </div>
+    </div>
+</div>
 
   <article class="post-content">
   <html>
@@ -297,7 +299,7 @@ th {
     page-break-inside: avoid;
   }
   img {
-    max-width: 100% !important;
+    max-width: 50% !important;
   }
   p,
   h2,
@@ -1189,7 +1191,7 @@ img {
 .carousel-inner > .item > img,
 .carousel-inner > .item > a > img {
   display: block;
-  max-width: 100%;
+  max-width: 50%;
   height: auto;
 }
 .img-rounded {
@@ -1205,7 +1207,7 @@ img {
   -o-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
   display: inline-block;
-  max-width: 100%;
+  max-width: 50%;
   height: auto;
 }
 .img-circle {
@@ -2328,7 +2330,7 @@ th {
 }
 .table {
   width: 100%;
-  max-width: 100%;
+  max-width: 50%;
   margin-bottom: 18px;
 }
 .table > thead > tr > th,
@@ -2573,7 +2575,7 @@ legend {
 }
 label {
   display: inline-block;
-  max-width: 100%;
+  max-width: 50%;
   margin-bottom: 5px;
   font-weight: bold;
 }
@@ -3809,7 +3811,7 @@ tbody.collapse.in {
   display: block;
   float: none;
   width: 100%;
-  max-width: 100%;
+  max-width: 50%;
 }
 .btn-group-vertical > .btn-group > .btn {
   float: none;
@@ -5041,7 +5043,7 @@ a.badge:focus {
   padding-right: 0px;
 }
 .jumbotron .container {
-  max-width: 100%;
+  max-width: 50%;
 }
 @media screen and (min-width: 768px) {
   .jumbotron {
@@ -6648,7 +6650,7 @@ button.close {
     display: inline-block !important;
   }
 }
-@media (min-width: 768px) and (max-width: 991px) {
+@media (min-width: 100px) and (max-width: 300px) {
   .visible-sm {
     display: block !important;
   }
@@ -10065,7 +10067,7 @@ div.output_area .rendered_html img {
 }
 div.output_area img,
 div.output_area svg {
-  max-width: 100%;
+  max-width: 50%;
   height: auto;
 }
 div.output_area img.unconfined,
@@ -10369,7 +10371,7 @@ div.output_unrecognized a:hover {
 }
 .rendered_html img,
 .rendered_html svg {
-  max-width: 100%;
+  max-width: 50%;
   height: auto;
 }
 .rendered_html img.unconfined,
@@ -11842,7 +11844,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>I've recently been constructing a genetic algorithm (GA) to design solvents for batteries. This has been really fun! I was initially motivated to look into GAs after attending a seminar by &lt;a href=http://pure.au.dk/portal/en/persons/id(42b599ae-3c1c-4a97-9b90-374393df2fde).html&gt;Bjørk Hammer&lt;/a&gt; where he described using a simple GA that only performed mutations (no crossover, single parents, etc.) to resolve crystal structures of <a href="https://www.scopus.com/record/display.uri?eid=2-s2.0-84905641049&amp;origin=inward&amp;txGid=df0b8014858ea68bbc811b80b343c3d2">metal complexes</a>.</p>
+<p>I've recently been constructing a genetic algorithm (GA) to design solvents for batteries. This has been really fun! I was initially motivated to look into GAs after attending a seminar by Bjørk Hammer where he described using a simple GA that only performed mutations (no crossover, single parents, etc.) to resolve crystal structures of <a href="https://www.scopus.com/record/display.uri?eid=2-s2.0-84905641049&amp;origin=inward&amp;txGid=df0b8014858ea68bbc811b80b343c3d2">metal complexes</a>.</p>
 <p>It's been incredibly handy to use the cheminformatics module <a href="http://www.rdkit.org/docs/index.html">RDKit</a> as a starting place. My code is hosted on <a href="https://pypi.python.org/pypi/gains/0.2.dev18">pypi</a> and <a href="https://github.com/wesleybeckner/gains">github</a> and can be installed with:</p>
 
 <pre><code>pip install gains</code></pre>
@@ -13298,10 +13300,7 @@ AAAASUVORK5CYII=
 
   </article>
 
-</div>
 
-      </div>
-    </div>
 
     <footer class="site-footer">
 
@@ -13324,7 +13323,7 @@ AAAASUVORK5CYII=
           </li>
           
           <li>
-          <a href="http://wesleybeckner.github.io/assets/WBCV.pdf">CV</a>
+          <a href="http://localhost:4000/assets/WBCV.pdf">CV</a>
 	  </li>
 
       </ul>
