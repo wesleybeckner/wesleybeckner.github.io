@@ -11780,7 +11780,7 @@ div#notebook {
 <p><img src="{{ site.url }}/assets/post1.png" alt=""></p>
 <p>At first I thought this must be a hyperparameter issue in the NN—a 10K dataset expanded to 30K with potentially different feature distributions could cause underperformance in the model training—so I did a quick check for this evaluating the performance of a shrinkage method, the Least Absolute Shrinkage Selection Operator or <em>LASSO</em>, on both datasets...</p>
 <p>...and I found that LASSO was severely underperforming with the 30k dataset as well. So before attempting an exhaustive hyperparameter search I decided to check the underlying dataset.</p>
-<p>Using another nifty statistical method, the bootstrap, I checked the confidence intervals of the features selected by LASSO. In the following image we're looking at a box and whiskers plot of the assigned coefficient value from LASSO for the indicated features for the 10k dataset (left) and 30k dataset (right):</p>
+<p>Using another statistical method, the bootstrap, I checked the confidence intervals of the features selected by LASSO. In the following image we're looking at a box and whiskers plot of the assigned coefficient value from LASSO for the indicated features for the 10k dataset (left) and 30k dataset (right):</p>
 <p><img src="{{ site.url }}/assets/post2.png" alt=""></p>
 <p>This gave me a couple of immediate concerns:</p>
 <ol>
