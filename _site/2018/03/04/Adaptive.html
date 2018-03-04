@@ -4,10 +4,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Similarity Metrics and Density Prediction</title>
+    <title>Adaptive Learning and Design with Molecular Dynamics</title>
     <meta name="viewport" content="width=device-width">
     <meta name="description" content="Research and Teaching Website for Wesley Beckner">
-    <link rel="canonical" href="http://localhost:4000/2018/02/05/Tanimoto.html">
+    <link rel="canonical" href="http://localhost:4000/2018/03/04/Adaptive.html">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/main.css">
@@ -69,8 +69,8 @@
       <div class="wrap">
 
   <header class="post-header">
-    <h1>Similarity Metrics and Density Prediction</h1>
-    <p class="meta">Feb 5, 2018</p>
+    <h1>Adaptive Learning and Design with Molecular Dynamics</h1>
+    <p class="meta">Mar 4, 2018</p>
   </header>
       </div>
     </div>
@@ -79,7 +79,7 @@
   <article class="post-content">
   <html>
 <head><meta charset="utf-8" />
-<title>post_1_tanimoto_similarity</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>post_3_adaptive_learning</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 <style type="text/css">
@@ -11853,248 +11853,78 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This week I've been working on combining quantitative structure property relationships (QSPRs), genetic algorithms (GAs), and molecular dynamics simulations (MD) to design solvents with specific densities.</p>
-<p>The particular solvents I'm investigating are ionic liquids (ILs)—salts that are liquid at room temperature.</p>
-<p><strong>I'm using these experimental vs MD comparisons to motivate use of MD as a final verification in future QSPR projects. Eventually I'll want to swap out density with entire property profiles. Some of these properties will be challenging to calculate in MD—i.e. the QSPR/GA portion of this discovery pipeline needs to be solved.</strong></p>
-<p>There are several properties of these systems that we can calculate accurately in MD; one of the easiest and fastest of which is density. With a short, five nanosecond NPT (isothermal-isobaric ensemble) simulation I can match experimental densities quite well:</p>
-<table>
-<thead><tr>
-<th style="text-align:center">Salt</th>
-<th style="text-align:center">MD</th>
-<th style="text-align:center">Exp</th>
-<th style="text-align:center">% Difference</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">1-butyl-3-methylimidazolium bis[(trifluoromethyl)sulfonyl]imide</td>
-<td style="text-align:center">1413 +/- 32</td>
-<td style="text-align:center">1436 +/- 1</td>
-<td style="text-align:center">1.6%</td>
-</tr>
-<tr>
-<td style="text-align:center">1-butyl-1-methylpyrrolidinium bis[(trifluoromethyl)sulfonyl]imide</td>
-<td style="text-align:center">1405 +/- 42</td>
-<td style="text-align:center">1395 +/- 1</td>
-<td style="text-align:center">-0.7%</td>
-</tr>
-<tr>
-<td style="text-align:center">...</td>
-<td style="text-align:center">...</td>
-<td style="text-align:center">...</td>
-<td style="text-align:center">...</td>
-</tr>
-</tbody>
-</table>
-<p>For my initial salts I was getting disagreement between my predicted densities from my QSPR and calculated densities from MD, around 15% error:</p>
-<table>
-<thead><tr>
-<th style="text-align:center">Salt ID</th>
-<th style="text-align:center">Model Density</th>
-<th style="text-align:center">MD Density</th>
-<th style="text-align:center">% Difference</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">C001_A001</td>
-<td style="text-align:center">900</td>
-<td style="text-align:center">1065 +/- 32</td>
-<td style="text-align:center">15.5%</td>
-</tr>
-<tr>
-<td style="text-align:center">C002_A002</td>
-<td style="text-align:center">1100</td>
-<td style="text-align:center">1334 +/- 44</td>
-<td style="text-align:center">17.5%</td>
-</tr>
-<tr>
-<td style="text-align:center">C003_A003</td>
-<td style="text-align:center">1100</td>
-<td style="text-align:center">996 +/- 4</td>
-<td style="text-align:center">-10.4%</td>
-</tr>
-<tr>
-<td style="text-align:center">C004_A004</td>
-<td style="text-align:center">1300</td>
-<td style="text-align:center">1139 +/- 29</td>
-<td style="text-align:center">-14.1%</td>
-</tr>
-<tr>
-<td style="text-align:center">...</td>
-<td style="text-align:center">...</td>
-<td style="text-align:center">...</td>
-<td style="text-align:center">...</td>
-</tr>
-</tbody>
-</table>
-<p>Assuming the MD to be the "truth" I could:</p>
-<ol>
-<li>make a better model</li>
-<li>bias the GA</li>
-</ol>
-<h3 id="A-Better-Model">A Better Model<a class="anchor-link" href="#A-Better-Model">&#182;</a></h3><p>This could involve improving the neural net, choosing a different model altogether (I'm curious how K-means would perform in a structural-similarity search), getting more data, pre-processing the data, etc.</p>
-<p>My original model data:</p>
+<p>Adaptive learning and design will be a critical area of new research when it comes to materials research.</p>
+<p>In my little research bubble... machine learning and genetic algorithms (ML+GA) can be used to predict ILs within the property distribution of the training dataset. But ML+GA combined with molecular dynamics (MD) could actually <em>add</em> training data at the fringes of these property distributions, allowing for structures that were beyond the scope of the initial ML+GA. As <a href="https://www.nature.com/articles/s41524-017-0056-5">Ramprasad</a> explained in his 2017 review:</p>
+<p><em>“what should be the next new material system to consider or include in the training set that would lead to an improvement of the model or the material?” This may be accomplished by balancing the tradeoffs between exploration and exploitation. That is, at any given stage of an iterative learning process, a number of new candidates may be predicted to have certain properties with uncertainties</em><sup>1</sup></p>
+<p>I previously posted about creating candidate structures from a model trained on the following data:</p>
 <ul>
-<li>Number of unique salts:   44</li>
-<li>Total data points:    9053</li>
-<li>Temperature range $(K)$:  219.01-473.15</li>
-<li>Pressure range $(kPa)$:   86.5-206900.0</li>
-<li>Density range $(kg/m^3)$: 852.3-1741.5</li>
-</ul>
-<p>was used to train a feed forward neural net.</p>
-<h3 id="Bias-the-GA">Bias the GA<a class="anchor-link" href="#Bias-the-GA">&#182;</a></h3><p>This has to do with <a href="https://machinelearningmastery.com/how-to-identify-outliers-in-your-data/">outlier detection</a>; how different is my candidate salt from the salts contained within the training data and can this difference be quantified to associate some measure of error with a given density prediction? Can we then use an "allowable" threshold of error to guide the GA?</p>
-<p>There are two primary methods of outlier detection, proximity methods and projection methods. Projection methods involve reducing the dimensionality of your dataset, i.e. "projecting" $n-dimensional$ data onto $m-dimensional$ data where $m &lt; n$ This could be done via principal component analysis (PCA), for instance. I liked this approach, especially because it would involve my model directly, broadcasting my input features onto a lower-dimensional space and then checking whether the salt candidate produced by the GA was "far away" from this principal axis.</p>
-<p>But I also considered that I was doing a <em>molecular</em> structure search. And the nice thing about that is, many a PhD thesis and big-pharma dollar has been spent refining methods of structure searches for small molecules.</p>
-<p>Most of these similarity mappings are permutations of the <a href="http://csis.pace.edu/ctappert/dps/d861-12/session4-p2.pdf">Jaccard Index</a>—defined as the intersection of two sets over their union—and <a href="https://www.sciencedirect.com/science/article/pii/S1046202314002631">molecular fingerprints</a>—bitwise representations of molecular structures. Both similarity mappings and molecular fingerprints have been studied extensively.</p>
-<p>Intersection of two datasets over their union (wikipedia commons):
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Intersection_over_Union_-_visual_equation.png/300px-Intersection_over_Union_-_visual_equation.png" alt="" /></p>
-<p>bitvectorization of molecular structures (<a href="https://www.sciencedirect.com/science/article/pii/S1046202314002631">source</a>):
-<img src="https://ars.els-cdn.com/content/image/1-s2.0-S1046202314002631-fx1.jpg" alt="" /></p>
-<h3 id="Both-Ideas-at-Once">Both Ideas at Once<a class="anchor-link" href="#Both-Ideas-at-Once">&#182;</a></h3><p>I thought both similarity mapping and model variation/improvement would be interesting in this context so I went ahead with these ideas together.</p>
-<p>In my original model I had ~9k datapoints but only 44 unique salt types. My model was overwhelmed with the temperature (T) and pressure (P) effects on density. I scraped some more data and retrained my model with the following data:</p>
-<ul>
-<li>Number of unique salts:   471</li>
-<li>Total data points:    6270</li>
+<li>Unique salts: 471</li>
+<li>Data points:  6270</li>
 <li>Temperature range $(K)$:  290.13-314.9</li>
 <li>Pressure range $(kPa)$:   100.7-191.9</li>
-<li>Density range $(kg/m^3)$: 871.3-1715.67</li>
+<li>Density range $(kg/m^3)$: <strong>871.3-1715.67</strong></li>
 </ul>
-<p>Since my GA is searching for salt densities at a specific T and P; I don't need to model densities far away from my target T and P (300$K$ and 101$kPa$). <strong>My overall dataset is smaller, but it contains more relevant data.</strong></p>
-<p>I then ran the GA so that it was only allowing structure solutions that had a Jaccard index of 0.9 or higher:</p>
-<table>
-<thead><tr>
-<th style="text-align:center">Salt ID</th>
-<th style="text-align:center">Tanimoto Similarity Score</th>
-<th style="text-align:center">Molecular Relative</th>
-<th style="text-align:center">Anion</th>
-<th style="text-align:center">Model Density</th>
-<th style="text-align:center">MD Density</th>
-<th style="text-align:center">% Difference</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">C011_A011</td>
-<td style="text-align:center">0.90</td>
-<td style="text-align:center">1-butylimidazolium</td>
-<td style="text-align:center">dimethylphosphate</td>
-<td style="text-align:center">1000</td>
-<td style="text-align:center">1069.0 +/- 38.0</td>
-<td style="text-align:center">-6.9</td>
-</tr>
-<tr>
-<td style="text-align:center">C012_A012</td>
-<td style="text-align:center">0.93</td>
-<td style="text-align:center">1-methyl-3-octyl-1H-imidazolium</td>
-<td style="text-align:center">thiocyanate</td>
-<td style="text-align:center">1000</td>
-<td style="text-align:center">1013.0 +/- 25.0</td>
-<td style="text-align:center">-1.3</td>
-</tr>
-<tr>
-<td style="text-align:center">C013_A013</td>
-<td style="text-align:center">0.94</td>
-<td style="text-align:center">3-(2-cyanoethyl)-1-decyl-1H-imidazolium</td>
-<td style="text-align:center">thiocyanate</td>
-<td style="text-align:center">1000</td>
-<td style="text-align:center">992.0 +/- 39.0</td>
-<td style="text-align:center">0.8</td>
-</tr>
-<tr>
-<td style="text-align:center">C014_A014</td>
-<td style="text-align:center">0.97</td>
-<td style="text-align:center">3-(6-hydroxyhexyl)-1-methylimidazolium</td>
-<td style="text-align:center">propionate</td>
-<td style="text-align:center">1000</td>
-<td style="text-align:center">1008.0 +/- 31.0</td>
-<td style="text-align:center">-0.8</td>
-</tr>
-<tr>
-<td style="text-align:center">...</td>
-<td style="text-align:center">...</td>
-<td style="text-align:center">...</td>
-<td style="text-align:center">...</td>
-<td style="text-align:center">...</td>
-<td style="text-align:center">...</td>
-<td style="text-align:center">...</td>
-</tr>
-</tbody>
-</table>
-<p>And got much better results. Yet when I allowed the GA to explore vastly unsimilar structures, I was surprised to discover the model still matched the MD calculations much better than before!</p>
-<p><img src="http://localhost:4000/assets/tanimoto2.jpg" alt="" /></p>
-<p>Infact, when I used a number of similarity metrics, to target very dissimilar salts from the training data... I still had model predictions matching MD values within 10%.</p>
-<p><img src="http://localhost:4000/assets/tanimoto1.jpg" alt="" /></p>
-<p>And doing a simple linear regression of the different similarity matching protocols showed that, although there was some degree of trend with prediction accuracy, most of them were not predictive of the final % error, with $R-squared$ values hovering around 0.2.</p>
-<p><img src="http://localhost:4000/assets/tanimoto3.jpg" alt="" /></p>
-<h3 id="One-Final-Check">One Final Check<a class="anchor-link" href="#One-Final-Check">&#182;</a></h3><p>I was really surprised by these results. <em>What aspect about the new model was so significant?</em>. I decided to make and test one final model where I included all the data I could get ~29k data points but did not screen for the specific T and P I would be using as a search criteria in my GA. What I found was that this model performed very similar to my first! In other words, the NN was overwhelmed with the effects of T and P on density.</p>
-<p>Final check model trained at full range of T and P with ~29k datapoints</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It's important to verify the model performance for densities within the bounds of its training dataset. I ran ~150 structures, 50 at each of ~1000 $kg/m^3$, ~1300 $kg/m^3$, and ~1500 $kg/m^3$:</p>
+<p><img src="http://localhost:4000/assets/parity_plots.svg" alt="" /></p>
+<p>where I've previously written about the Tanimoto similarity metric <a href="http://wesleybeckner.github.io/2018/02/05/Tanimoto.html">here</a>. But basically this is a measure of determining how far away (structurally) the cationic moiety of the IL is from the training data cations.</p>
+<p>Without constricting the similarity score (0.4 is the lowest the model ever produces) the model makes predictions that average 5% error. Constricting the similarity score to &gt; 0.9 reduces this error rate even more. So we know the model works within the bounds of its training data. You can also see this directly in the following error vs similarity score plots:</p>
+<p><img src="http://localhost:4000/assets/similarity_plots.svg" alt="" /></p>
+<p>where the lines indicate the linear trend between error and similarity to the training dataset.</p>
+<p>There are two ways we might consider applying adaptive learning and design:</p>
 <ul>
-<li>Number of unique salts:   502</li>
-<li>Total data points:    28952</li>
-<li>Temperature range $(K)$:  217.577-473.15</li>
-<li>Pressure range $(kPa)$:   86.5-300000.0</li>
-<li>Density range $(kg/m^3)$: 841.3-1741.5</li>
+<li>improve the model performance within the bounds of its training data or</li>
+<li>investigate how <em>extreme</em> density values might be obtained that exist outside the bounds of the training data</li>
 </ul>
-<table>
-<thead><tr>
-<th style="text-align:center">Salt ID</th>
-<th style="text-align:center">Tanimoto Similarity Score</th>
-<th style="text-align:center">Molecular Relative</th>
-<th style="text-align:center">Anion</th>
-<th style="text-align:center">Model Density</th>
-<th style="text-align:center">MD Density</th>
-<th>% Difference</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">C021_A021</td>
-<td style="text-align:center">0.53</td>
-<td style="text-align:center">3-butyl-1-methyl-1H-imidazolium</td>
-<td style="text-align:center">benzenesulfonate</td>
-<td style="text-align:center">1500</td>
-<td style="text-align:center">1223 +/- 51</td>
-<td>-22.7%</td>
-</tr>
-<tr>
-<td style="text-align:center">C022_A022</td>
-<td style="text-align:center">0.84</td>
-<td style="text-align:center">N-methyl-2-hydroxyethylammonium</td>
-<td style="text-align:center">L-lysinate</td>
-<td style="text-align:center">1000</td>
-<td style="text-align:center">1195 +/- 35</td>
-<td>16.4%</td>
-</tr>
-<tr>
-<td style="text-align:center">C023_A023</td>
-<td style="text-align:center">0.52</td>
-<td style="text-align:center">1-isobutenyl-3-methylimidazolium</td>
-<td style="text-align:center">TAPSO</td>
-<td style="text-align:center">1000</td>
-<td style="text-align:center">1285 +/- 50</td>
-<td>22.7%</td>
-</tr>
-<tr>
-<td style="text-align:center">C024_A024</td>
-<td style="text-align:center">0.47</td>
-<td style="text-align:center">2-methoxy-N,N,N-trimethylethan-1-aminium</td>
-<td style="text-align:center">pentanoate</td>
-<td style="text-align:center">1500</td>
-<td style="text-align:center">1218 +/- 58</td>
-<td>-23.2%</td>
-</tr>
-<tr>
-<td style="text-align:center">...</td>
-<td style="text-align:center">...</td>
-<td style="text-align:center">...</td>
-<td style="text-align:center">...</td>
-<td style="text-align:center">...</td>
-<td style="text-align:center">...</td>
-<td>...</td>
-</tr>
-</tbody>
-</table>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Learning-outside-the-property-ranges-of-the-training-data">Learning outside the property ranges of the training data<a class="anchor-link" href="#Learning-outside-the-property-ranges-of-the-training-data">&#182;</a></h2><p>In the second case, <strong>Say I wanted to design a salt with density outside the range of the training data</strong>, e.g. something below 800 or above 1800 $kg/m^3$, how would the ML+GA perform?</p>
+<p>My guess is that in the region immediately above and below the range of the training data the GA+ML will work okay, initially, but form bad predictions the further away I set the target density:</p>
+<p><img src="http://localhost:4000/assets/adaptive1.jpg" alt="" /></p>
+<p>On the first handful of candidates above the training data range I'm getting error rates of 22 and 25%.</p>
+<p>Error rates are even higher for candidates below the training data range, at 36 and 81%:</p>
+<p><img src="http://localhost:4000/assets/adaptive2.jpg" alt="" /></p>
+<p>As expected, <strong>the model is making predictions that are notably worse than when it attempts values within the range of its training data!</strong></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Learning-within-the-property-ranges-of-the-training-data">Learning within the property ranges of the training data<a class="anchor-link" href="#Learning-within-the-property-ranges-of-the-training-data">&#182;</a></h2><p>Let's take a second look at that first parity plot:</p>
+<p><img src="http://localhost:4000/assets/adaptive3.jpg" alt="" /></p>
+<p>You'll notice that the model seems to be underpredicting the density a lot of the time. Would a better strategy then, be to instead of predicting densities at 3 targets for ~150 structures, to begin with fewer structures, feed their calculated densities back into the model, and hopefully by the end of ~150 structures, be generating structures whose properties were actually intended?</p>
+<p>Let's see!</p>
+<p>I'm not sure what the best metric is for determining an "adaptive learning" success rate. But one thought that comes to mind is the cumulative $R^2$ for every prediction. <em>What is the  minimization methodology that leads to the lowest $R^2$?</em></p>
+<p>I'm going to recreate the above plot with a fresh model. Because I'm sampling only 80% of my training set in the initial model and because the model training is non-deterministic this plot will look a little different (but you should notice that the MD density values are the same):</p>
+<p><img src="http://localhost:4000/assets/adaptive4.jpg" alt="" /></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>And now in 3 iterations, moving 25% of the MD calculations into the training dataset each time we get:</p>
+<p><img src="http://localhost:4000/assets/adaptive_learn.jpg.png" alt="" /></p>
+<p>where the inset $R^2$ is for the testing data only (blue stars).</p>
+<p>This should be an expected result. The $R^2$ is improving as we add relevant information to the training dataset. Looking forward to seeing what these results implicate for an actual adaptive learning scheme.</p>
 
 </div>
 </div>
