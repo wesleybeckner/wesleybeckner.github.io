@@ -11774,9 +11774,9 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Adaptive learning and design will be a critical area of new research when it comes to materials discovery.</p>
-<p>In my little research bubble... machine learning and genetic algorithms (ML+GA) can be used to predict ILs within the property distribution of the training dataset. But ML+GA combined with molecular dynamics (MD) could actually <em>add</em> training data at the fringes of these property distributions, allowing for structures that were beyond the scope of the initial ML+GA. As <a href="https://www.nature.com/articles/s41524-017-0056-5">Ramprasad</a> explained in his 2017 review:</p>
-<p><em>“what should be the next new material system to consider or include in the training set that would lead to an improvement of the model or the material?” This may be accomplished by balancing the tradeoffs between exploration and exploitation. That is, at any given stage of an iterative learning process, a number of new candidates may be predicted to have certain properties with uncertainties</em><sup>1</sup></p>
+<p>I've recently been digging into adaptive learning and design strategies—an area poised to be very important in materials discovery. The basic paradigm seems to involve balancing exploration with exploitation. As <a href="https://www.nature.com/articles/s41524-017-0056-5">Ramprasad</a> explained in his 2017 Nature review:</p>
+<p><em>“what should be the next new material system to consider or include in the training set that would lead to an improvement of the model or the material?” This may be accomplished by balancing the tradeoffs between exploration and exploitation. That is, at any given stage of an iterative learning process, a number of new candidates may be predicted to have certain properties with uncertainties"</em></p>
+<p>In my little research bubble... I'm using machine learning and genetic algorithms (ML+GA) to predict IL properties. But ML+GA combined with molecular dynamics (MD) can actually <em>add</em> training data at the fringes of these property distributions, allowing for structures that were beyond the scope of the initial ML+GA.</p>
 <p>I previously posted about creating candidate structures from a model trained on the following data:</p>
 <ul>
 <li>Unique salts: 471</li>
@@ -11785,6 +11785,7 @@ div#notebook {
 <li>Pressure range $(kPa)$:   100.7-191.9</li>
 <li>Density range $(kg/m^3)$: <strong>871.3-1715.67</strong></li>
 </ul>
+<p>and ran ~150 structures, 50 at each of ~1000 $kg/m^3$, ~1300 $kg/m^3$, and ~1500 $kg/m^3$:</p>
 
 </div>
 </div>
@@ -11793,43 +11794,19 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>It's important to verify the model performance for densities within the bounds of its training dataset. I ran ~150 structures, 50 at each of ~1000 $kg/m^3$, ~1300 $kg/m^3$, and ~1500 $kg/m^3$:</p>
-<p><img src="{{ site.url }}/assets/parity_plots.svg" alt=""></p>
-<p>where I've previously written about the Tanimoto similarity metric <a href="http://wesleybeckner.github.io/2018/02/05/Tanimoto.html">here</a>. But basically this is a measure of determining how far away (structurally) the cationic moiety of the IL is from the training data cations.</p>
-<p>Without constricting the similarity score (0.4 is the lowest the model ever produces) the model makes predictions that average 5% error. Constricting the similarity score to &gt; 0.9 reduces this error rate even more. So we know the model works within the bounds of its training data. You can also see this directly in the following error vs similarity score plots:</p>
-<p><img src="{{ site.url }}/assets/similarity_plots.svg" alt=""></p>
-<p>where the lines indicate the linear trend between error and similarity to the training dataset.</p>
-<p>There are two ways we might consider applying adaptive learning and design:</p>
-<ul>
-<li>improve the model performance within the bounds of its training data or</li>
-<li>investigate how <em>extreme</em> density values might be obtained that exist outside the bounds of the training data</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Learning-outside-the-property-ranges-of-the-training-data">Learning outside the property ranges of the training data<a class="anchor-link" href="#Learning-outside-the-property-ranges-of-the-training-data">&#182;</a></h2><p>In the second case, <strong>Say I wanted to design a salt with density outside the range of the training data</strong>, e.g. something below 800 or above 1800 $kg/m^3$, how would the ML+GA perform?</p>
-<p>My guess is that in the region immediately above and below the range of the training data the GA+ML will work okay, initially, but form bad predictions the further away I set the target density:</p>
-<p><img src="{{ site.url }}/assets/adaptive1.jpg" alt=""></p>
-<p>On the first handful of candidates above the training data range I'm getting error rates of 22 and 25%.</p>
-<p>Error rates are even higher for candidates below the training data range, at 36 and 81%:</p>
-<p><img src="{{ site.url }}/assets/adaptive2.jpg" alt=""></p>
-<p>As expected, <strong>the model is making predictions that are notably worse than when it attempts values within the range of its training data!</strong></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Learning-within-the-property-ranges-of-the-training-data">Learning within the property ranges of the training data<a class="anchor-link" href="#Learning-within-the-property-ranges-of-the-training-data">&#182;</a></h2><p>Let's take a second look at that first parity plot:</p>
 <p><img src="{{ site.url }}/assets/adaptive3.jpg" alt=""></p>
-<p>You'll notice that the model seems to be underpredicting the density a lot of the time. Would a better strategy then, be to instead of predicting densities at 3 targets for ~150 structures, to begin with fewer structures, feed their calculated densities back into the model, and hopefully by the end of ~150 structures, be generating structures whose properties were actually intended?</p>
+<p>where the purple color map indicates the <a href="http://wesleybeckner.github.io/2018/02/05/Tanimoto.html">Tanimoto similarity score</a> (missing colorbar, deep purple is a high score ~.99). But basically this is a measure of determining how close (structurally) the cationic moiety of the IL is to the training data cations.</p>
+<p>Without constricting the similarity score (0.4 is the lowest the model ever produces) the model makes predictions that average 5% error. Constricting the similarity score to &gt; 0.9 reduces this error rate even more.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You'll notice, however, that the model seems to be underpredicting the density a lot of the time.</p>
+<p><strong>Coming back to Ramprasad's statement, would a better strategy then, be to instead of predicting densities at 3 targets for ~150 structures, to begin with fewer structures, feed their calculated densities back into the model, and hopefully by the end of ~150 structures, be generating structures whose properties were actually intended?</strong></p>
 <p>Let's see!</p>
 <p>I'm not sure what the best metric is for determining an "adaptive learning" success rate. But one thought that comes to mind is the cumulative $R^2$ for every prediction. <em>What is the  minimization methodology that leads to the lowest $R^2$?</em></p>
 <p>I'm going to recreate the above plot with a fresh model. Because I'm sampling only 80% of my training set in the initial model and because the model training is non-deterministic this plot will look a little different (but you should notice that the MD density values are the same):</p>

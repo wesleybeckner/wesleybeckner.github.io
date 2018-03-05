@@ -11784,9 +11784,9 @@ div#notebook {
 &lt;/div&gt;
 &lt;div class=&quot;inner_cell&quot;&gt;
 &lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;Adaptive learning and design will be a critical area of new research when it comes to materials research.&lt;/p&gt;
-&lt;p&gt;In my little research bubble... machine learning and genetic algorithms (ML+GA) can be used to predict ILs within the property distribution of the training dataset. But ML+GA combined with molecular dynamics (MD) could actually &lt;em&gt;add&lt;/em&gt; training data at the fringes of these property distributions, allowing for structures that were beyond the scope of the initial ML+GA. As &lt;a href=&quot;https://www.nature.com/articles/s41524-017-0056-5&quot;&gt;Ramprasad&lt;/a&gt; explained in his 2017 review:&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;“what should be the next new material system to consider or include in the training set that would lead to an improvement of the model or the material?” This may be accomplished by balancing the tradeoffs between exploration and exploitation. That is, at any given stage of an iterative learning process, a number of new candidates may be predicted to have certain properties with uncertainties&lt;/em&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/p&gt;
+&lt;p&gt;I've recently been digging into adaptive learning and design strategies—an area poised to be very important in materials discovery. The basic paradigm seems to involve balancing exploration with exploitation. As &lt;a href=&quot;https://www.nature.com/articles/s41524-017-0056-5&quot;&gt;Ramprasad&lt;/a&gt; explained in his 2017 Nature review:&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;“what should be the next new material system to consider or include in the training set that would lead to an improvement of the model or the material?” This may be accomplished by balancing the tradeoffs between exploration and exploitation. That is, at any given stage of an iterative learning process, a number of new candidates may be predicted to have certain properties with uncertainties&quot;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;In my little research bubble... I'm using machine learning and genetic algorithms (ML+GA) to predict IL properties. But ML+GA combined with molecular dynamics (MD) can actually &lt;em&gt;add&lt;/em&gt; training data at the fringes of these property distributions, allowing for structures that were beyond the scope of the initial ML+GA.&lt;/p&gt;
 &lt;p&gt;I previously posted about creating candidate structures from a model trained on the following data:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Unique salts: 471&lt;/li&gt;
@@ -11795,6 +11795,7 @@ div#notebook {
 &lt;li&gt;Pressure range $(kPa)$:   100.7-191.9&lt;/li&gt;
 &lt;li&gt;Density range $(kg/m^3)$: &lt;strong&gt;871.3-1715.67&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
+&lt;p&gt;and ran ~150 structures, 50 at each of ~1000 $kg/m^3$, ~1300 $kg/m^3$, and ~1500 $kg/m^3$:&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
@@ -11803,43 +11804,19 @@ div#notebook {
 &lt;/div&gt;
 &lt;div class=&quot;inner_cell&quot;&gt;
 &lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;It's important to verify the model performance for densities within the bounds of its training dataset. I ran ~150 structures, 50 at each of ~1000 $kg/m^3$, ~1300 $kg/m^3$, and ~1500 $kg/m^3$:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/parity_plots.svg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;where I've previously written about the Tanimoto similarity metric &lt;a href=&quot;http://wesleybeckner.github.io/2018/02/05/Tanimoto.html&quot;&gt;here&lt;/a&gt;. But basically this is a measure of determining how far away (structurally) the cationic moiety of the IL is from the training data cations.&lt;/p&gt;
-&lt;p&gt;Without constricting the similarity score (0.4 is the lowest the model ever produces) the model makes predictions that average 5% error. Constricting the similarity score to &amp;gt; 0.9 reduces this error rate even more. So we know the model works within the bounds of its training data. You can also see this directly in the following error vs similarity score plots:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/similarity_plots.svg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;where the lines indicate the linear trend between error and similarity to the training dataset.&lt;/p&gt;
-&lt;p&gt;There are two ways we might consider applying adaptive learning and design:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;improve the model performance within the bounds of its training data or&lt;/li&gt;
-&lt;li&gt;investigate how &lt;em&gt;extreme&lt;/em&gt; density values might be obtained that exist outside the bounds of the training data&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;prompt input_prompt&quot;&gt;
-&lt;/div&gt;
-&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;h2 id=&quot;Learning-outside-the-property-ranges-of-the-training-data&quot;&gt;Learning outside the property ranges of the training data&lt;a class=&quot;anchor-link&quot; href=&quot;#Learning-outside-the-property-ranges-of-the-training-data&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;In the second case, &lt;strong&gt;Say I wanted to design a salt with density outside the range of the training data&lt;/strong&gt;, e.g. something below 800 or above 1800 $kg/m^3$, how would the ML+GA perform?&lt;/p&gt;
-&lt;p&gt;My guess is that in the region immediately above and below the range of the training data the GA+ML will work okay, initially, but form bad predictions the further away I set the target density:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/adaptive1.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;On the first handful of candidates above the training data range I'm getting error rates of 22 and 25%.&lt;/p&gt;
-&lt;p&gt;Error rates are even higher for candidates below the training data range, at 36 and 81%:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/adaptive2.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;As expected, &lt;strong&gt;the model is making predictions that are notably worse than when it attempts values within the range of its training data!&lt;/strong&gt;&lt;/p&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;prompt input_prompt&quot;&gt;
-&lt;/div&gt;
-&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;h2 id=&quot;Learning-within-the-property-ranges-of-the-training-data&quot;&gt;Learning within the property ranges of the training data&lt;a class=&quot;anchor-link&quot; href=&quot;#Learning-within-the-property-ranges-of-the-training-data&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Let's take a second look at that first parity plot:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/adaptive3.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;You'll notice that the model seems to be underpredicting the density a lot of the time. Would a better strategy then, be to instead of predicting densities at 3 targets for ~150 structures, to begin with fewer structures, feed their calculated densities back into the model, and hopefully by the end of ~150 structures, be generating structures whose properties were actually intended?&lt;/p&gt;
+&lt;p&gt;where the purple color map indicates the &lt;a href=&quot;http://wesleybeckner.github.io/2018/02/05/Tanimoto.html&quot;&gt;Tanimoto similarity score&lt;/a&gt; (missing colorbar, deep purple is a high score ~.99). But basically this is a measure of determining how close (structurally) the cationic moiety of the IL is to the training data cations.&lt;/p&gt;
+&lt;p&gt;Without constricting the similarity score (0.4 is the lowest the model ever produces) the model makes predictions that average 5% error. Constricting the similarity score to &amp;gt; 0.9 reduces this error rate even more.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;p&gt;You'll notice, however, that the model seems to be underpredicting the density a lot of the time.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Coming back to Ramprasad's statement, would a better strategy then, be to instead of predicting densities at 3 targets for ~150 structures, to begin with fewer structures, feed their calculated densities back into the model, and hopefully by the end of ~150 structures, be generating structures whose properties were actually intended?&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Let's see!&lt;/p&gt;
 &lt;p&gt;I'm not sure what the best metric is for determining an &quot;adaptive learning&quot; success rate. But one thought that comes to mind is the cumulative $R^2$ for every prediction. &lt;em&gt;What is the  minimization methodology that leads to the lowest $R^2$?&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;I'm going to recreate the above plot with a fresh model. Because I'm sampling only 80% of my training set in the initial model and because the model training is non-deterministic this plot will look a little different (but you should notice that the MD density values are the same):&lt;/p&gt;
@@ -11855,7 +11832,7 @@ div#notebook {
 &lt;p&gt;And now in 3 iterations, moving 25% of the MD calculations into the training dataset each time we get:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/adaptive_learn.jpg.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;where the inset $R^2$ is for the testing data only (blue stars).&lt;/p&gt;
-&lt;p&gt;This should be an expected result. The $R^2$ is improving as we add relevant information to the training dataset. Looking forward to seeing what these results implicate for an actual adaptive learning scheme.&lt;/p&gt;
+&lt;p&gt;This should be an expected result. The $R^2$ is improving as we add relevant information to the training dataset. I am, however, surprised the $R^2$ isn't higher. There may be bias in the MD densities; this can be resolved by checking the density calculations against ILs with known experimental values, something I'm working on. Another bit of evidence suggesting the MD bias is that the densities were under predicted by the model most of the time (vs the MD calculated densities). Regardless, this is enough as a proof of concept and I'm looking forward to seeing what these results implicate for an actual adaptive learning scheme!&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
