@@ -2,7 +2,7 @@
 layout: page
 ---
 
-<img align="left" src="{{ site.url }}/assets/github.jpg" hspace="60" style="PADDING-RIGHT: 12px" width="322">
+<img align="left" src="{{ site.url }}/assets/wes_dog.jpg" hspace="60" style="PADDING-RIGHT: 12px" width="322">
 
 I am a Chemical Engineering graduate student, [NRT](http://www.cei.washington.edu/opportunities/direct/) trainee, and [ARCS](http://seattlearcsfoundation.org/) fellow at the University of Washington. I use molecular dynamics (MD) to develop materials used for energy and medicine.
 

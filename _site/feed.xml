@@ -11818,7 +11818,7 @@ div#notebook {
 &lt;p&gt;You'll notice, however, that the model seems to be underpredicting the density a lot of the time.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Coming back to Ramprasad's statement, would a better strategy then, be to instead of predicting densities at 3 targets for ~150 structures, to begin with fewer structures, feed their calculated densities back into the model, and hopefully by the end of ~150 structures, be generating structures whose properties were actually intended?&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Let's see!&lt;/p&gt;
-&lt;p&gt;I'm not sure what the best metric is for determining an &quot;adaptive learning&quot; success rate. But one thought that comes to mind is the cumulative $R^2$ for every prediction. &lt;em&gt;What is the  minimization methodology that leads to the lowest $R^2$?&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;I'm not sure what the best metric is for determining an &quot;adaptive learning&quot; success rate. But one thought that comes to mind is the cumulative $R^2$ for every prediction. &lt;em&gt;What is the  minimization methodology that leads to the highest $R^2$?&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;I'm going to recreate the above plot with a fresh model. Because I'm sampling only 80% of my training set in the initial model and because the model training is non-deterministic this plot will look a little different (but you should notice that the MD density values are the same):&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/adaptive4.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
