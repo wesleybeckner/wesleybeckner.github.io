@@ -7,7 +7,7 @@
     <title>Similarity Metrics and Density Prediction</title>
     <meta name="viewport" content="width=device-width">
     <meta name="description" content="Research and Teaching Website for Wesley Beckner">
-    <link rel="canonical" href="http://localhost:4000/2018/02/05/Tanimoto.html">
+    <link rel="canonical" href="http://wesleybeckner.github.io/2018/02/05/Tanimoto.html">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/main.css">
@@ -12022,11 +12022,11 @@ div#notebook {
 </tbody>
 </table>
 <p>And got much better results. Yet when I allowed the GA to explore vastly unsimilar structures, I was surprised to discover the model still matched the MD calculations much better than before!</p>
-<p><img src="http://localhost:4000/assets/tanimoto2.jpg" alt="" /></p>
+<p><img src="http://wesleybeckner.github.io/assets/tanimoto2.jpg" alt="" /></p>
 <p>Infact, when I used a number of similarity metrics, to target very dissimilar salts from the training data... I still had model predictions matching MD values within 10%.</p>
-<p><img src="http://localhost:4000/assets/tanimoto1.jpg" alt="" /></p>
+<p><img src="http://wesleybeckner.github.io/assets/tanimoto1.jpg" alt="" /></p>
 <p>And doing a simple linear regression of the different similarity matching protocols showed that, although there was some degree of trend with prediction accuracy, most of them were not predictive of the final % error, with $R-squared$ values hovering around 0.2.</p>
-<p><img src="http://localhost:4000/assets/tanimoto3.jpg" alt="" /></p>
+<p><img src="http://wesleybeckner.github.io/assets/tanimoto3.jpg" alt="" /></p>
 <h3 id="One-Final-Check">One Final Check<a class="anchor-link" href="#One-Final-Check">&#182;</a></h3><p>I was really surprised by these results. <em>What aspect about the new model was so significant?</em>. I decided to make and test one final model where I included all the data I could get ~29k data points but did not screen for the specific T and P I would be using as a search criteria in my GA. What I found was that this model performed very similar to my first! In other words, the NN was overwhelmed with the effects of T and P on density.</p>
 <p>Final check model trained at full range of T and P with ~29k datapoints</p>
 <ul>
@@ -12134,7 +12134,7 @@ div#notebook {
           </li>
           
           <li>
-          <a href="http://localhost:4000/assets/WBCV.pdf">CV</a>
+          <a href="http://wesleybeckner.github.io/assets/WBCV.pdf">CV</a>
 	  </li>
 
       </ul>
