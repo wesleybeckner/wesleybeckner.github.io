@@ -7,7 +7,7 @@
     <title>A Lesson in Data Cleaning</title>
     <meta name="viewport" content="width=device-width">
     <meta name="description" content="Research and Teaching Website for Wesley Beckner">
-    <link rel="canonical" href="http://wesleybeckner.github.io/2018/01/25/Salty.html">
+    <link rel="canonical" href="http://localhost:4000/2018/01/25/Salty.html">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/main.css">
@@ -11856,11 +11856,11 @@ div#notebook {
 <p>I was having this issue today where, when I went from a 10k dataset to a 30k dataset for the same type of data, my feed-forward neural net (NN) severely underperformed on the larger dataset.</p>
 <p><strong>the NN is attempting to predict solvent density based on state variables, temperature and pressure, and a host of molecular features I feed in as inputs.</strong></p>
 <p>You can see the NN's predictive failure in the image below where I've shown the predicted vs actual parity plots for the 10k (left) and 30k (right) datasets:</p>
-<p><img src="http://wesleybeckner.github.io/assets/post1.png" alt="" /></p>
+<p><img src="http://localhost:4000/assets/post1.png" alt="" /></p>
 <p>At first I thought this must be a hyperparameter issue in the NN—a 10K dataset expanded to 30K with potentially different feature distributions could cause underperformance in the model training—so I did a quick check for this evaluating the performance of a shrinkage method, the Least Absolute Shrinkage Selection Operator or <em>LASSO</em>, on both datasets...</p>
 <p>...and I found that LASSO was severely underperforming with the 30k dataset as well. So before attempting an exhaustive hyperparameter search I decided to check the underlying dataset.</p>
 <p>Using another statistical method, the bootstrap, I checked the confidence intervals of the features selected by LASSO. In the following image we're looking at a box and whiskers plot of the assigned coefficient value from LASSO for the indicated features for the 10k dataset (left) and 30k dataset (right):</p>
-<p><img src="http://wesleybeckner.github.io/assets/post2.png" alt="" /></p>
+<p><img src="http://localhost:4000/assets/post2.png" alt="" /></p>
 <p>This gave me a couple of immediate concerns:</p>
 <ol>
 <li><strong>Temperature</strong> doesn't show up as an important state variable in the 30k dataset</li>
@@ -11873,17 +11873,17 @@ div#notebook {
 </ol>
 <h2 id="What's-the-deal?">What's the deal?<a class="anchor-link" href="#What's-the-deal?">&#182;</a></h2><p>Thermodynamics aside... if temperature is an important state variable in the subset model shouldn't it be included in the larger dataset model as well?</p>
 <p>I took a look at the distribution of state variables for both datasets:</p>
-<p><img src="http://wesleybeckner.github.io/assets/post3.png" alt="" /></p>
+<p><img src="http://localhost:4000/assets/post3.png" alt="" /></p>
 <p>Filtering the 30k dataset for the same distribution of state variables as the 10k dataset left me with about 28k data points and resulted in the same noisy parity plot as before:</p>
-<p><img src="http://wesleybeckner.github.io/assets/post4.png" alt="" /></p>
+<p><img src="http://localhost:4000/assets/post4.png" alt="" /></p>
 <p>So I knew it wasn't an issue with disparate state variables. Expecting some more <em>fundamental</em> corruption of my data, I filtered both datasets down to a single datatype—a cation-anion pair—and checked the statistical summary of it's state variables:</p>
-<p><img src="http://wesleybeckner.github.io/assets/post5.png" alt="" /></p>
+<p><img src="http://localhost:4000/assets/post5.png" alt="" /></p>
 <p><strong>viola!</strong> There was stark disagreement between what should be <em>the same exact data</em> in both datasets:</p>
 <center> This was a dirty dataset problem. </center><h2 id="Cleaning-the-dataset">Cleaning the dataset<a class="anchor-link" href="#Cleaning-the-dataset">&#182;</a></h2><p>The typical procedure here is to strategically sample from your data pipeline to find out where you've infected your dataset. I began at my local, unprocessed datafiles.</p>
 <p>In the following surface plot for T-P-D of a single solvent, you can see sub-surfaces where a single experimental group produced many data points (these look like correlated gridpoints). So although there is noise in the data inter-experimentally, the intra-experimental data is acting as we expect it to: density decreases with temperature and increases with pressure.</p>
-<p><img src="http://wesleybeckner.github.io/assets/post6.png" alt="" /></p>
+<p><img src="http://localhost:4000/assets/post6.png" alt="" /></p>
 <p>Turns out there was a hiccup in my data processing immediately after this point, before adding molecular features to my dataframe, and upon cleanup:</p>
-<p><img src="http://wesleybeckner.github.io/assets/post7.png" alt="" /></p>
+<p><img src="http://localhost:4000/assets/post7.png" alt="" /></p>
 <p>We get a nice regression!</p>
 <p>The moral of the story here is: clean your data, carefully!</p>
 
@@ -11925,7 +11925,7 @@ div#notebook {
           </li>
           
           <li>
-          <a href="http://wesleybeckner.github.io/assets/WBCV.pdf">CV</a>
+          <a href="http://localhost:4000/assets/WBCV.pdf">CV</a>
 	  </li>
 
       </ul>

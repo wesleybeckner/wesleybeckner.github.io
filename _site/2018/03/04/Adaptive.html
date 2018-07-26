@@ -7,7 +7,7 @@
     <title>Adaptive Learning and Design with Molecular Dynamics</title>
     <meta name="viewport" content="width=device-width">
     <meta name="description" content="Research and Teaching Website for Wesley Beckner">
-    <link rel="canonical" href="http://wesleybeckner.github.io/2018/03/04/Adaptive.html">
+    <link rel="canonical" href="http://localhost:4000/2018/03/04/Adaptive.html">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/main.css">
@@ -11873,7 +11873,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="http://wesleybeckner.github.io/assets/adaptive3.jpg" alt="" /></p>
+<p><img src="http://localhost:4000/assets/adaptive3.jpg" alt="" /></p>
 <p>where the purple color map indicates the <a href="http://wesleybeckner.github.io/2018/02/05/Tanimoto.html">Tanimoto similarity score</a> (missing colorbar, deep purple is a high score ~.99). But basically this is a measure of determining how close (structurally) the cationic moiety of the IL is to the training data cations.</p>
 <p>Without constricting the similarity score (0.4 is the lowest the model ever produces) the model makes predictions that average 5% error. Constricting the similarity score to &gt; 0.9 reduces this error rate even more.</p>
 
@@ -11889,7 +11889,7 @@ div#notebook {
 <p>Let's see!</p>
 <p>I'm not sure what the best metric is for determining an "adaptive learning" success rate. But one thought that comes to mind is the cumulative $R^2$ for every prediction. <em>What is the  minimization methodology that leads to the highest $R^2$?</em></p>
 <p>I'm going to recreate the above plot with a fresh model. Because I'm sampling only 80% of my training set in the initial model and because the model training is non-deterministic this plot will look a little different (but you should notice that the MD density values are the same):</p>
-<p><img src="http://wesleybeckner.github.io/assets/adaptive4.jpg" alt="" /></p>
+<p><img src="http://localhost:4000/assets/adaptive4.jpg" alt="" /></p>
 
 </div>
 </div>
@@ -11899,7 +11899,7 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>And now in 3 iterations, moving 25% of the MD calculations into the training dataset each time we get:</p>
-<p><img src="http://wesleybeckner.github.io/assets/adaptive_learn.jpg.png" alt="" /></p>
+<p><img src="http://localhost:4000/assets/adaptive_learn.jpg.png" alt="" /></p>
 <p>where the inset $R^2$ is for the testing data only (blue stars).</p>
 <p>This should be an expected result. The $R^2$ is improving as we add relevant information to the training dataset. I am, however, surprised the $R^2$ isn't higher. There may be bias in the MD densities; this can be resolved by checking the density calculations against ILs with known experimental values, something I'm working on. Another bit of evidence suggesting the MD bias is that the densities were under predicted by the model most of the time (vs the MD calculated densities). Regardless, this is enough as a proof of concept and I'm looking forward to seeing what these results implicate for an actual adaptive learning scheme!</p>
 
@@ -11941,7 +11941,7 @@ div#notebook {
           </li>
           
           <li>
-          <a href="http://wesleybeckner.github.io/assets/WBCV.pdf">CV</a>
+          <a href="http://localhost:4000/assets/WBCV.pdf">CV</a>
 	  </li>
 
       </ul>

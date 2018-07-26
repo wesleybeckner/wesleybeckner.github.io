@@ -7,7 +7,7 @@
     <title>Twitter Sentiment Analysis in Python: A Base Model</title>
     <meta name="viewport" content="width=device-width">
     <meta name="description" content="Research and Teaching Website for Wesley Beckner">
-    <link rel="canonical" href="http://wesleybeckner.github.io/2018/06/05/nlp.html">
+    <link rel="canonical" href="http://localhost:4000/2018/06/05/nlp.html">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/main.css">
@@ -11855,7 +11855,7 @@ div#notebook {
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id="top"></a></p>
 <p>I was recently working with a team to create a twitter climate sentiment model (and possibly a general adversarial network to create climate-centric tweets) and it became obvious that as we were developing our convolutional neural network, we were lacking a basic model to compare our performance with. That is the purpose of this post, to get down to the bare-bones most basic approach to sentiment classification. Hopefully this walk through will be useful for others as well!</p>
-<p><img src="http://wesleybeckner.github.io/assets/basemodel1.jpg" alt="" /></p>
+<p><img src="http://localhost:4000/assets/basemodel1.jpg" alt="" /></p>
 <h2 id="Contents">Contents<a class="anchor-link" href="#Contents">&#182;</a></h2><ol>
 <li>TF-IDF<ol>
 <li><a href="#tfidf">bag of shapes</a></li>
@@ -11882,7 +11882,7 @@ div#notebook {
 <p><a id="tfidf"></a></p>
 <h3 id="Term-Frequency-Inverse-Document-Frequency-(TF-IDF)">Term Frequency Inverse Document Frequency (TF-IDF)<a class="anchor-link" href="#Term-Frequency-Inverse-Document-Frequency-(TF-IDF)">&#182;</a></h3><p><a href="#top">back to top</a></p>
 <p>If you do things on the internet, chances are you've come into contact with a search algorithm using TF-IDF under the hood. The basic idea of TF-IDF is to score words in a document based on how well they discern the document from the rest of the corpus—we're going to take this idea and apply it to our twitter data. But for now you can think of it as selecting the unique objects in each of a set of bags that distinguishes that bag from the set:</p>
-<p><img src="http://wesleybeckner.github.io/assets/tfidf.png" alt="Drawing" width="200" /></p>
+<p><img src="http://localhost:4000/assets/tfidf.png" alt="Drawing" width="200" /></p>
 <p>In this case, the highest scoring shapes for the left bag would be the red triangles, and the highest scoring shape in the right bag would be the orange chord. Let's work this out mathematically.</p>
 
 </div>
@@ -13342,7 +13342,7 @@ testing score: 0.709
           </li>
           
           <li>
-          <a href="http://wesleybeckner.github.io/assets/WBCV.pdf">CV</a>
+          <a href="http://localhost:4000/assets/WBCV.pdf">CV</a>
 	  </li>
 
       </ul>
