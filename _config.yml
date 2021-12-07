@@ -16,7 +16,6 @@
 title: "Hello. I'm Wesley Beckner."
 email: 'wesleybeckner@gmail.com'
 description: "I'm a data scientist and chemical engineer from Seattle-Dallas creating models, dashboards, and courses."
-baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://wesleybeckner.github.io" # the base hostname & protocol for your site, e.g. https://example.com
 linkedin_username: wesley-beckner-phd-b5631ab5
 github_username: 'wesleybeckner'
