@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
  <title>Hello. I'm Wesley Beckner.</title>
- <link href="http://wesleybeckner.github.io/atom.xml" rel="self"/>
- <link href="http://wesleybeckner.github.io/"/>
- <updated>2021-12-06T23:21:26-08:00</updated>
- <id>http://wesleybeckner.github.io</id>
+ <link href="https://wesleybeckner.github.io/atom.xml" rel="self"/>
+ <link href="https://wesleybeckner.github.io/"/>
+ <updated>2021-12-06T23:22:47-08:00</updated>
+ <id>https://wesleybeckner.github.io</id>
  <author>
    <name>Wesley Beckner</name>
    <email></email>
@@ -14,27 +14,27 @@
  
  <entry>
    <title>Python Foundations</title>
-   <link href="http://wesleybeckner.github.io/development/design/2020/12/06/python-foundations.html"/>
+   <link href="https://wesleybeckner.github.io/development/design/2020/12/06/python-foundations.html"/>
    <updated>2020-12-06T13:15:00-08:00</updated>
-   <id>http://wesleybeckner.github.io/development/design/2020/12/06/python-foundations</id>
+   <id>https://wesleybeckner.github.io/development/design/2020/12/06/python-foundations</id>
    <content type="html">
 </content>
  </entry>
  
  <entry>
    <title>Truffletopia</title>
-   <link href="http://wesleybeckner.github.io/development/design/2020/12/06/truffletopia.html"/>
+   <link href="https://wesleybeckner.github.io/development/design/2020/12/06/truffletopia.html"/>
    <updated>2020-12-06T07:56:00-08:00</updated>
-   <id>http://wesleybeckner.github.io/development/design/2020/12/06/truffletopia</id>
+   <id>https://wesleybeckner.github.io/development/design/2020/12/06/truffletopia</id>
    <content type="html">
 </content>
  </entry>
  
  <entry>
    <title>MintDash</title>
-   <link href="http://wesleybeckner.github.io/development/2020/12/06/mintdash.html"/>
+   <link href="https://wesleybeckner.github.io/development/2020/12/06/mintdash.html"/>
    <updated>2020-12-06T07:56:00-08:00</updated>
-   <id>http://wesleybeckner.github.io/development/2020/12/06/mintdash</id>
+   <id>https://wesleybeckner.github.io/development/2020/12/06/mintdash</id>
    <content type="html">
 </content>
  </entry>
