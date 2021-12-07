@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+ <title>Hello. I'm Wesley Beckner.</title>
+ <link href="http://localhost:4000/atom.xml" rel="self"/>
+ <link href="http://localhost:4000/"/>
+ <updated>2021-12-06T21:47:29-08:00</updated>
+ <id>http://localhost:4000</id>
+ <author>
+   <name>Wesley Beckner</name>
+   <email></email>
+ </author>
+
+ 
+ <entry>
+   <title>Python Foundations</title>
+   <link href="http://localhost:4000/development/design/2020/12/06/python-foundations.html"/>
+   <updated>2020-12-06T13:15:00-08:00</updated>
+   <id>http://localhost:4000/development/design/2020/12/06/python-foundations</id>
+   <content type="html">
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Truffletopia</title>
+   <link href="http://localhost:4000/development/design/2020/12/06/truffletopia.html"/>
+   <updated>2020-12-06T07:56:00-08:00</updated>
+   <id>http://localhost:4000/development/design/2020/12/06/truffletopia</id>
+   <content type="html">
+</content>
+ </entry>
+ 
+ <entry>
+   <title>MintDash</title>
+   <link href="http://localhost:4000/development/2020/12/06/mintdash.html"/>
+   <updated>2020-12-06T07:56:00-08:00</updated>
+   <id>http://localhost:4000/development/2020/12/06/mintdash</id>
+   <content type="html">
+</content>
+ </entry>
+ 
+
+</feed>

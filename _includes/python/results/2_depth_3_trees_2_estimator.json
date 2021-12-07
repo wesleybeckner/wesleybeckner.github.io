@@ -1,3 +1,0 @@
-[
-{"number of samples": "20012", "children": [{"number of samples": "4668", "children": [{"number of samples": "2225", "name": "predicts 0.31 for 11.1 percent of the points", "percent": 11.12}, {"number of samples": "2443", "name": "predicts 0.51 for 12.2 percent of the points", "percent": 12.21}], "name": "Potential > 0.2591", "percent": 23.33}, {"number of samples": "15344", "children": [{"number of samples": "6119", "name": "predicts 0.67 for 30.6 percent of the points", "percent": 30.58}, {"number of samples": "9225", "name": "predicts 0.8 for 46.1 percent of the points", "percent": 46.1}], "name": "Potential > 0.1994", "percent": 76.67}], "name": "Potential > 0.2365", "percent": 100.0}
-]
