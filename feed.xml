@@ -5,15 +5,15 @@
     <description>I'm a data scientist and chemical engineer from Seattle-Dallas creating models, dashboards, and courses.</description>
     <link>https://wesleybeckner.github.io/</link>
     <atom:link href="https://wesleybeckner.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 06 Dec 2021 23:22:47 -0800</pubDate>
-    <lastBuildDate>Mon, 06 Dec 2021 23:22:47 -0800</lastBuildDate>
+    <pubDate>Sat, 11 Dec 2021 21:25:40 -0600</pubDate>
+    <lastBuildDate>Sat, 11 Dec 2021 21:25:40 -0600</lastBuildDate>
     <generator>Jekyll v4.2.1</generator>
     
       <item>
         <title>Python Foundations</title>
         <description>
 </description>
-        <pubDate>Sun, 06 Dec 2020 13:15:00 -0800</pubDate>
+        <pubDate>Sun, 06 Dec 2020 15:15:00 -0600</pubDate>
         <link>https://wesleybeckner.github.io/development/design/2020/12/06/python-foundations.html</link>
         <guid isPermaLink="true">https://wesleybeckner.github.io/development/design/2020/12/06/python-foundations.html</guid>
         
@@ -34,7 +34,7 @@
         <title>Truffletopia</title>
         <description>
 </description>
-        <pubDate>Sun, 06 Dec 2020 07:56:00 -0800</pubDate>
+        <pubDate>Sun, 06 Dec 2020 09:56:00 -0600</pubDate>
         <link>https://wesleybeckner.github.io/development/design/2020/12/06/truffletopia.html</link>
         <guid isPermaLink="true">https://wesleybeckner.github.io/development/design/2020/12/06/truffletopia.html</guid>
         
@@ -55,7 +55,7 @@
         <title>MintDash</title>
         <description>
 </description>
-        <pubDate>Sun, 06 Dec 2020 07:56:00 -0800</pubDate>
+        <pubDate>Sun, 06 Dec 2020 09:56:00 -0600</pubDate>
         <link>https://wesleybeckner.github.io/development/2020/12/06/mintdash.html</link>
         <guid isPermaLink="true">https://wesleybeckner.github.io/development/2020/12/06/mintdash.html</guid>
         
