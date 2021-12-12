@@ -17,7 +17,7 @@ title: "Hello. I'm Wesley Beckner."
 email: 'wesleybeckner@gmail.com'
 description: "I'm a data scientist and chemical engineer from Seattle-Dallas creating models, dashboards, and courses."
 baseurl: ""
-url: "http://wesleybeckner.github.io" # "http://localhost:4000" #
+url: "https://wesleybeckner.github.io" # "http://localhost:4000" #
 linkedin_username: wesley-beckner-phd-b5631ab5
 github_username: 'wesleybeckner'
 medium_username: 'medium.com/@wesleybeckner'
@@ -91,7 +91,7 @@ pagination:
 ### Phantom settings
 footer_text: '© 2021 Wesley Beckner'
 admin_name: 'Wesley Beckner'
-google_analytics: "UA-114664473-1" # Update with your own tracking ID
+google_analytics: "UA-114664473-1"
 enable_contact: false
 
 #### Phantom Navigation menu
