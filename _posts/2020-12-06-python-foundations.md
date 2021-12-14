@@ -2,7 +2,7 @@
 layout: inner
 position: left
 title: 'Python Foundations'
-date: 2020-12-06 21:15:00
+date: 2020-12-05 21:15:00
 categories: development design
 tags: Python Jupyter OOP
 featured_image: '/img/posts/python_foundations.png'
