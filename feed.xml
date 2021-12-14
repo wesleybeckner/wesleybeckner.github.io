@@ -5,23 +5,23 @@
     <description>I'm a data scientist and chemical engineer from Seattle-Dallas creating models, dashboards, and courses.</description>
     <link>https://wesleybeckner.github.io/</link>
     <atom:link href="https://wesleybeckner.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 11 Dec 2021 21:27:43 -0600</pubDate>
-    <lastBuildDate>Sat, 11 Dec 2021 21:27:43 -0600</lastBuildDate>
+    <pubDate>Mon, 13 Dec 2021 21:09:35 -0600</pubDate>
+    <lastBuildDate>Mon, 13 Dec 2021 21:09:35 -0600</lastBuildDate>
     <generator>Jekyll v4.2.1</generator>
     
       <item>
-        <title>Python Foundations</title>
+        <title>Data Science Foundations</title>
         <description>
 </description>
-        <pubDate>Sun, 06 Dec 2020 15:15:00 -0600</pubDate>
-        <link>https://wesleybeckner.github.io/development/design/2020/12/06/python-foundations.html</link>
-        <guid isPermaLink="true">https://wesleybeckner.github.io/development/design/2020/12/06/python-foundations.html</guid>
+        <pubDate>Sun, 13 Dec 2020 15:15:00 -0600</pubDate>
+        <link>https://wesleybeckner.github.io/development/design/2020/12/13/data-science-foundations.html</link>
+        <guid isPermaLink="true">https://wesleybeckner.github.io/development/design/2020/12/13/data-science-foundations.html</guid>
         
-        <category>Python</category>
+        <category>Machine</category>
         
-        <category>Jupyter</category>
+        <category>Learning</category>
         
-        <category>OOP</category>
+        <category>Data</category>
         
         
         <category>development</category>
@@ -67,6 +67,27 @@
         
         
         <category>development</category>
+        
+      </item>
+    
+      <item>
+        <title>Python Foundations</title>
+        <description>
+</description>
+        <pubDate>Sat, 05 Dec 2020 15:15:00 -0600</pubDate>
+        <link>https://wesleybeckner.github.io/development/design/2020/12/05/python-foundations.html</link>
+        <guid isPermaLink="true">https://wesleybeckner.github.io/development/design/2020/12/05/python-foundations.html</guid>
+        
+        <category>Python</category>
+        
+        <category>Jupyter</category>
+        
+        <category>OOP</category>
+        
+        
+        <category>development</category>
+        
+        <category>design</category>
         
       </item>
     
