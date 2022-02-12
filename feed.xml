@@ -5,8 +5,13 @@
     <description>I'm a data scientist and chemical engineer from Seattle-Dallas creating models, dashboards, and courses.</description>
     <link>https://wesleybeckner.github.io/</link>
     <atom:link href="https://wesleybeckner.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+<<<<<<< HEAD
     <pubDate>Fri, 11 Feb 2022 22:49:56 -0800</pubDate>
     <lastBuildDate>Fri, 11 Feb 2022 22:49:56 -0800</lastBuildDate>
+=======
+    <pubDate>Tue, 14 Dec 2021 11:22:30 -0600</pubDate>
+    <lastBuildDate>Tue, 14 Dec 2021 11:22:30 -0600</lastBuildDate>
+>>>>>>> c1d3b8731672a9f12543c9328df48101e4e06b91
     <generator>Jekyll v4.2.1</generator>
     
       <item>
