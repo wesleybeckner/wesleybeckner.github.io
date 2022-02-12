@@ -4,7 +4,7 @@
  <title>Hello. I'm Wesley Beckner.</title>
  <link href="https://wesleybeckner.github.io/atom.xml" rel="self"/>
  <link href="https://wesleybeckner.github.io/"/>
- <updated>2021-12-13T21:09:35-06:00</updated>
+ <updated>2022-02-11T18:56:36-08:00</updated>
  <id>https://wesleybeckner.github.io</id>
  <author>
    <name>Wesley Beckner</name>
@@ -15,7 +15,7 @@
  <entry>
    <title>Data Science Foundations</title>
    <link href="https://wesleybeckner.github.io/development/design/2020/12/13/data-science-foundations.html"/>
-   <updated>2020-12-13T15:15:00-06:00</updated>
+   <updated>2020-12-13T13:15:00-08:00</updated>
    <id>https://wesleybeckner.github.io/development/design/2020/12/13/data-science-foundations</id>
    <content type="html">
 </content>
@@ -24,7 +24,7 @@
  <entry>
    <title>Truffletopia</title>
    <link href="https://wesleybeckner.github.io/development/design/2020/12/06/truffletopia.html"/>
-   <updated>2020-12-06T09:56:00-06:00</updated>
+   <updated>2020-12-06T07:56:00-08:00</updated>
    <id>https://wesleybeckner.github.io/development/design/2020/12/06/truffletopia</id>
    <content type="html">
 </content>
@@ -33,7 +33,7 @@
  <entry>
    <title>MintDash</title>
    <link href="https://wesleybeckner.github.io/development/2020/12/06/mintdash.html"/>
-   <updated>2020-12-06T09:56:00-06:00</updated>
+   <updated>2020-12-06T07:56:00-08:00</updated>
    <id>https://wesleybeckner.github.io/development/2020/12/06/mintdash</id>
    <content type="html">
 </content>
@@ -42,7 +42,7 @@
  <entry>
    <title>Python Foundations</title>
    <link href="https://wesleybeckner.github.io/development/design/2020/12/05/python-foundations.html"/>
-   <updated>2020-12-05T15:15:00-06:00</updated>
+   <updated>2020-12-05T13:15:00-08:00</updated>
    <id>https://wesleybeckner.github.io/development/design/2020/12/05/python-foundations</id>
    <content type="html">
 </content>
