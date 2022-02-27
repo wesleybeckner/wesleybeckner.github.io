@@ -1,6 +1,6 @@
 ---
 layout: inner
-position: left
+position: right
 title: 'Python Foundations'
 date: 2020-12-05 21:15:00
 categories: development design
