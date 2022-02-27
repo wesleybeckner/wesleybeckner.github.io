@@ -2486,7 +2486,7 @@ button.btn i, input.btn i { padding-right: 0.5em; }
 
 @media only screen and (min-width: 770px) and (max-width: 990px) { .hero-container { margin: 5em 0 5em 0; } }
 
-.hero-content { width: 60%; margin: 0 auto; display: table; }
+.hero-content { width: 100%; margin: 0 auto; display: table; }
 
 @media only screen and (min-width: 992px) and (max-width: 1195px) { .hero-content { width: 100%; } }
 
