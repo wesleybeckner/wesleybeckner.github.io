@@ -4,7 +4,7 @@
  <title>Hello. I'm Wesley Beckner.</title>
  <link href="https://wesleybeckner.github.io/atom.xml" rel="self"/>
  <link href="https://wesleybeckner.github.io/"/>
- <updated>2022-02-28T15:28:33-08:00</updated>
+ <updated>2022-02-28T15:39:09-08:00</updated>
  <id>https://wesleybeckner.github.io</id>
  <author>
    <name>Wesley Beckner</name>
@@ -14,9 +14,9 @@
  
  <entry>
    <title>Data Science and Microservices</title>
-   <link href="https://wesleybeckner.github.io/development/design/dashboards/2022/02/28/mindashjs.html"/>
+   <link href="https://wesleybeckner.github.io/development/design/dashboards/2022/02/28/mintdashjs.html"/>
    <updated>2022-02-28T13:15:00-08:00</updated>
-   <id>https://wesleybeckner.github.io/development/design/dashboards/2022/02/28/mindashjs</id>
+   <id>https://wesleybeckner.github.io/development/design/dashboards/2022/02/28/mintdashjs</id>
    <content type="html">
 </content>
  </entry>
