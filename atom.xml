@@ -4,13 +4,31 @@
  <title>Hello. I'm Wesley Beckner.</title>
  <link href="https://wesleybeckner.github.io/atom.xml" rel="self"/>
  <link href="https://wesleybeckner.github.io/"/>
- <updated>2022-02-26T19:00:15-08:00</updated>
+ <updated>2022-02-28T15:28:33-08:00</updated>
  <id>https://wesleybeckner.github.io</id>
  <author>
    <name>Wesley Beckner</name>
    <email></email>
  </author>
 
+ 
+ <entry>
+   <title>Data Science and Microservices</title>
+   <link href="https://wesleybeckner.github.io/development/design/dashboards/2022/02/28/mindashjs.html"/>
+   <updated>2022-02-28T13:15:00-08:00</updated>
+   <id>https://wesleybeckner.github.io/development/design/dashboards/2022/02/28/mindashjs</id>
+   <content type="html">
+</content>
+ </entry>
+ 
+ <entry>
+   <title>General Applications of Neural Networks</title>
+   <link href="https://wesleybeckner.github.io/development/design/2020/12/13/general-applications-of-neural-networks.html"/>
+   <updated>2020-12-13T13:15:00-08:00</updated>
+   <id>https://wesleybeckner.github.io/development/design/2020/12/13/general-applications-of-neural-networks</id>
+   <content type="html">
+</content>
+ </entry>
  
  <entry>
    <title>Data Science Foundations</title>

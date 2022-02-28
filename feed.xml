@@ -5,9 +5,53 @@
     <description>I'm a data scientist and chemical engineer from Seattle-Dallas creating models, dashboards, and courses.</description>
     <link>https://wesleybeckner.github.io/</link>
     <atom:link href="https://wesleybeckner.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 26 Feb 2022 19:00:15 -0800</pubDate>
-    <lastBuildDate>Sat, 26 Feb 2022 19:00:15 -0800</lastBuildDate>
+    <pubDate>Mon, 28 Feb 2022 15:28:33 -0800</pubDate>
+    <lastBuildDate>Mon, 28 Feb 2022 15:28:33 -0800</lastBuildDate>
     <generator>Jekyll v4.2.1</generator>
+    
+      <item>
+        <title>Data Science and Microservices</title>
+        <description>
+</description>
+        <pubDate>Mon, 28 Feb 2022 13:15:00 -0800</pubDate>
+        <link>https://wesleybeckner.github.io/development/design/dashboards/2022/02/28/mindashjs.html</link>
+        <guid isPermaLink="true">https://wesleybeckner.github.io/development/design/dashboards/2022/02/28/mindashjs.html</guid>
+        
+        <category>Mint</category>
+        
+        <category>jQuery</category>
+        
+        <category>ApexCharts</category>
+        
+        
+        <category>development</category>
+        
+        <category>design</category>
+        
+        <category>dashboards</category>
+        
+      </item>
+    
+      <item>
+        <title>General Applications of Neural Networks</title>
+        <description>
+</description>
+        <pubDate>Sun, 13 Dec 2020 13:15:00 -0800</pubDate>
+        <link>https://wesleybeckner.github.io/development/design/2020/12/13/general-applications-of-neural-networks.html</link>
+        <guid isPermaLink="true">https://wesleybeckner.github.io/development/design/2020/12/13/general-applications-of-neural-networks.html</guid>
+        
+        <category>Neural</category>
+        
+        <category>Networks</category>
+        
+        <category>Applications</category>
+        
+        
+        <category>development</category>
+        
+        <category>design</category>
+        
+      </item>
     
       <item>
         <title>Data Science Foundations</title>
