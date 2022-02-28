@@ -1,6 +1,6 @@
 {% include header.html %}
 
-    {% include home-hero.html %}
+    <!-- {% include home-hero.html %} -->
 
     
     <main id="portfolio">
@@ -16,20 +16,22 @@
             <p class="section-subtitle text-center">{{ site.section_subtitle }}</p>
             {% endif %} -->
 
-            <h2 class="section-title text-center">Latest Work</h2>
-            <p class="section-subtitle text-center">I have experience in a number of different areas. Have a look at what I'm working on right now.</p>
+            <h2 class="section-title text-center">Courses</h2>
+            <p class="section-subtitle text-center">All courses are offerred through the <a href="https://gixnetwork.org/professional/data-science/">University of Washington</a>.</p>
             <div class="break"></div>
 
             {% for post in paginator.posts %}
-              <div class="wow fadeIn">
-              {% if post.position == "left" %}
-                {% include content-left.html %}
-              {% endif %}
+              {% if post.course == "True" %}
+                <div class="wow fadeIn">
+                {% if post.position == "left" %}
+                  {% include content-left-course.html %}
+                {% endif %}
 
-              {% if post.position == "right" %}
-                {% include content-right.html %}
+                {% if post.position == "right" %}
+                  {% include content-right-course.html %}
+                {% endif %}
+                </div>
               {% endif %}
-              </div>
             {% endfor %}
 
             {% include pagination.html %}

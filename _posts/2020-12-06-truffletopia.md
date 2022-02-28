@@ -10,4 +10,5 @@ project_link: 'http://truffletopia.azurewebsites.net/'
 button_text: 'Visit Truffletopia'
 button_icon: 'industry'
 lead_text: 'A model factory for teaching data analytics, machine learning, and dashboards'
+course: 'False'
 ---

@@ -98,4 +98,5 @@ enable_contact: false
 enable_nav: true
 nav_item:
   - { url: '/', text: 'Home' }
-  - { url: 'https://wesleybeckner.github.io/courses', text: 'Courses' }
+  - { url: '/courses/', text: 'Courses' }
+  # - { url: '/about/', text: 'About'}

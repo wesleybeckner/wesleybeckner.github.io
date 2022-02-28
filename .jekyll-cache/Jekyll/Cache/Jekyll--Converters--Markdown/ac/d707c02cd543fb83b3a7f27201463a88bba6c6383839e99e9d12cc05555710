@@ -1,0 +1,96 @@
+I"<h2 id="about-me">About Me</h2>
+
+<p><img src="../img/posts/wesley_2022.jpg" alt="Me" /></p>
+
+<h3 id="definition-lists-can-be-used-with-html-syntax">Definition lists can be used with HTML syntax.</h3>
+
+<dl>
+<dt>Name</dt>
+<dd>Godzilla</dd>
+<dt>Born</dt>
+<dd>1952</dd>
+<dt>Birthplace</dt>
+<dd>Japan</dd>
+<dt>Color</dt>
+<dd>Green</dd>
+</dl>
+
+<figure class="highlight"><pre><code class="language-txt" data-lang="txt">Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long. This line should be long enough to demonstrate this.</code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-txt" data-lang="txt">The final element.</code></pre></figure>
+
+<hr />
+
+<h2 id="syntax-highlighting">Syntax highlighting</h2>
+
+<p>Jekyll has <a href="https://jekyllrb.com/docs/templates/#code-snippet-highlighting">built in support</a> for syntax highlighting of over 60 languages thanks to <a href="http://rouge.jneen.net/">Rouge</a>.</p>
+
+<p>To render a code block with syntax highlighting, surround your code as follows:</p>
+
+<figure class="highlight"><pre><code class="language-markdown" data-lang="markdown">{% highlight ruby %}
+def foo
+  puts 'foo'
+end
+{% endhighlight %}</code></pre></figure>
+
+<p><a href="http://pygments.org/">Pygments</a> styles are present under section 6.0 of <code class="language-plaintext highlighter-rouge">css/style.scss</code> for customization.</p>
+
+<h3 id="examples">Examples</h3>
+
+<hr />
+
+<h4 id="bash">Bash</h4>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="o">&gt;</span>_ ssh <span class="nt">-i</span> ~/.ssh/id_rsa account@host.com
+account@host:~<span class="err">$</span>
+<span class="nv">$ var</span><span class="o">=</span><span class="s2">"my-value"</span>
+<span class="nv">$ </span><span class="nb">echo</span> <span class="nv">$var</span>
+my-value
+<span class="nv">$ </span><span class="nb">logout</span></code></pre></figure>
+
+<h4 id="html">HTML</h4>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+ <span class="nt">&lt;head&gt;</span>
+   <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;title&gt;</span>title<span class="nt">&lt;/title&gt;</span>
+ <span class="nt">&lt;/head&gt;</span>
+ <span class="nt">&lt;body&gt;</span>
+
+ <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span></code></pre></figure>
+
+<h4 id="css">CSS</h4>
+
+<figure class="highlight"><pre><code class="language-css" data-lang="css"><span class="c">/*--------------------------------------------------------------
+	1.0 Defaults
+--------------------------------------------------------------*/</span>
+
+<span class="k">@media</span> <span class="p">(</span><span class="n">min-width</span><span class="p">:</span> <span class="m">1200px</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nc">.container</span> <span class="p">{</span>
+    <span class="nl">width</span><span class="p">:</span> <span class="m">1200px</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nt">body</span> <span class="p">{</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="m">#e9edf0</span><span class="p">;</span>
+  <span class="err">@extend</span> <span class="err">%opensans;</span>
+  <span class="nl">-webkit-font-smoothing</span><span class="p">:</span> <span class="n">antialiased</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<h4 id="yaml">YAML</h4>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="c1">### Phantom settings</span>
+<span class="na">paginate</span><span class="pi">:</span> <span class="m">10</span>
+<span class="na">footer_text</span><span class="pi">:</span> <span class="s1">'</span><span class="s">©</span><span class="nv"> </span><span class="s">2018</span><span class="nv"> </span><span class="s">Jami</span><span class="nv"> </span><span class="s">Gibbs'</span>
+<span class="na">admin_name</span><span class="pi">:</span> <span class="s1">'</span><span class="s">Jami</span><span class="nv"> </span><span class="s">Gibbs'</span>
+<span class="na">google_analytics</span><span class="pi">:</span> <span class="s2">"</span><span class="s">UA-9999999-99"</span> <span class="c1"># Update with your own tracking ID</span>
+
+<span class="c1">#### Phantom Navigation menu</span>
+<span class="na">enable_nav</span><span class="pi">:</span> <span class="no">true</span>
+<span class="na">nav_item</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="pi">{</span> <span class="nv">url</span><span class="pi">:</span> <span class="s1">'</span><span class="s">/'</span><span class="pi">,</span> <span class="nv">text</span><span class="pi">:</span> <span class="s1">'</span><span class="s">Home'</span> <span class="pi">}</span>
+  <span class="pi">-</span> <span class="pi">{</span> <span class="nv">url</span><span class="pi">:</span> <span class="s1">'</span><span class="s">/about'</span><span class="pi">,</span> <span class="nv">text</span><span class="pi">:</span> <span class="s1">'</span><span class="s">About'</span> <span class="pi">}</span></code></pre></figure>
+
+:ET
