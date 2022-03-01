@@ -5,8 +5,8 @@
     <description>I'm a data scientist and chemical engineer from Seattle-Dallas creating models, dashboards, and courses.</description>
     <link>https://wesleybeckner.github.io/</link>
     <atom:link href="https://wesleybeckner.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 28 Feb 2022 15:39:09 -0800</pubDate>
-    <lastBuildDate>Mon, 28 Feb 2022 15:39:09 -0800</lastBuildDate>
+    <pubDate>Mon, 28 Feb 2022 16:20:44 -0800</pubDate>
+    <lastBuildDate>Mon, 28 Feb 2022 16:20:44 -0800</lastBuildDate>
     <generator>Jekyll v4.2.1</generator>
     
       <item>
@@ -40,11 +40,11 @@
         <link>https://wesleybeckner.github.io/development/design/2020/12/13/general-applications-of-neural-networks.html</link>
         <guid isPermaLink="true">https://wesleybeckner.github.io/development/design/2020/12/13/general-applications-of-neural-networks.html</guid>
         
-        <category>Neural</category>
+        <category>Neural-Networks</category>
         
-        <category>Networks</category>
+        <category>WebApps</category>
         
-        <category>Applications</category>
+        <category>Flask</category>
         
         
         <category>development</category>
@@ -61,9 +61,7 @@
         <link>https://wesleybeckner.github.io/development/design/2020/12/13/data-science-foundations.html</link>
         <guid isPermaLink="true">https://wesleybeckner.github.io/development/design/2020/12/13/data-science-foundations.html</guid>
         
-        <category>Machine</category>
-        
-        <category>Learning</category>
+        <category>Machine-Learning</category>
         
         <category>Data</category>
         
