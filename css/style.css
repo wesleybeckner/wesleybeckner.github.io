@@ -2532,13 +2532,15 @@ button.btn i, input.btn i { padding-right: 0.5em; }
 /*-------------------------------------------------------------- 3.0 Posts --------------------------------------------------------------*/
 #portfolio .container { margin-top: 10em; }
 
-@media only screen and (max-width: 768px) { #portfolio .container { margin-top: 2em; } }
+@media only screen and (max-width: 768px) { #portfolio .container { margin-top: 5em; } }
 
 #portfolio .container .break { margin: 8em 0; }
 
 @media only screen and (max-width: 768px) { #portfolio .container .break { margin: 2em 0; } }
 
 .section-title { position: relative; margin: 0 auto; margin-bottom: 1em; }
+
+.section-title:after { content: ''; position: absolute; top: 1.35em; width: 3em; height: 3px; background-color: #ECEFF1; left: 50%; -webkit-transform: translateX(-50%); -ms-transform: translateX(-50%); transform: translateX(-50%); }
 
 .section-subtitle { width: 40%; margin: 0 auto; }
 
@@ -2563,6 +2565,8 @@ button.btn i, input.btn i { padding-right: 0.5em; }
 .content-wrap .content h3.title { position: relative; margin-bottom: 1.5em; }
 
 .content-wrap .content h3.title:after { content: ''; position: absolute; top: 1.5em; left: 0; width: 3em; height: 3px; background-color: #ECEFF1; }
+
+@media only screen and (max-width: 768px) { .content-wrap .content h3.title:after { top: 2.2em; } }
 
 .content-wrap .content .excerpt { width: 80%; }
 
