@@ -2463,6 +2463,8 @@ a:hover { color: #FF5B33; text-decoration: none; }
 
 img { width: 100%; }
 
+.img-sig { width: 150px; }
+
 button.btn, input.btn { padding: 12px 35px; margin: 2em 0.5em; border: solid 1px #d5e0e7; border-radius: 4px; color: #2E4453; font-weight: 600; }
 
 button.btn:hover, button.btn.btn-default:hover, input.btn:hover, input.btn.btn-default:hover { background-color: white; border: solid 1px #b0c5d2; -moz-box-shadow: 0 1px 0 #b0c5d2; -webkit-box-shadow: 0 1px 0 #b0c5d2; box-shadow: 0 1px 0 #b0c5d2; }
